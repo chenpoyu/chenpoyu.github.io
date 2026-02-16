@@ -1,0 +1,9 @@
+# robots.txt for Poyu Chen Portfolio
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chenpoyu.github.io/sitemap.xml
+
+# Allow search engines to index all content
+# No restricted paths for this portfolio site

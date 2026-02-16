@@ -1,0 +1,14 @@
+node_modules
+.quasar
+dist
+.DS_Store
+.thumbs.db
+*.log
+.env.local
+.env.*.local
+coverage
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

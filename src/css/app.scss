@@ -1,0 +1,83 @@
+// app global css in SCSS form
+body {
+    font-size: 1rem;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+}
+
+.footer {
+  height: 30px;
+  color: var(--font-color-primary);
+  background-color: var(--background-color);
+  justify-content: center;
+}
+
+/* Open Data Block */
+.OD {
+    &__side-btn {
+        &__label {
+            font-size: 12px;
+            line-height: 24px;
+            letter-spacing: .01785714em;
+            font-weight: 500;
+            font-wrap: wrap;
+            max-width: 80px;
+        }
+    }
+
+    &__left-padding {
+      padding-left: 100px;
+    }
+
+    &__main {
+        min-height: calc(100% - 50px) !important;
+
+        &__title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    }
+
+    .my-card {
+        background-color: var(--table-backgound-color);
+
+        .my-sticky-header-column-table {
+            .q-table__top, .q-table__bottom, thead tr:first-child th, td:first-child {
+                background-color: var(--table-backgound-color);
+            }
+
+            tr th {
+                position: sticky;
+                z-index: 2;
+            }
+
+            thead tr:last-child th {
+                top: 48px;
+                z-index: 3;
+            }
+
+            thead tr:first-child th {
+                top: 0;
+                z-index: 1;
+            }
+
+            tr:first-child th:first-child {
+                z-index: 3;
+            }
+
+            td:first-child {
+                z-index: 1;
+            }
+
+            td:first-child, th:first-child {
+                position: sticky;
+                left: 0;
+            }
+        }
+    }
+}
+/* Open Data Block */
+
+.site-text-shadow {
+  text-shadow: #575757 0.1em 0.1em 0.2em
+}
