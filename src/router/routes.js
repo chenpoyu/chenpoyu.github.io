@@ -43,6 +43,20 @@ const routes = [
           keywords: '微服務架構,物聯網,IoT,SSO,高併發,系統設計,技術架構'
         }
       },
+      {
+        path: '/portfolio',
+        name: 'portfolio',
+        component: () => import('pages/portfolio/Portfolio.vue'),
+        meta: {
+          title: '作品集 - Poyu Chen 陳柏妤 | 互動遊戲 ・ 教育網站 ・ 客製化官網',
+          description: '精選互動小遊戲、教育益智網站與客製化品牌官網，涵蓋 React、Vue 3、Canvas、Web Audio 等多元技術。包含兒童遊樂園、坦克大戰、媽祖抽獎等上線作品。',
+          keywords: '作品集,Portfolio,互動遊戲,教育網站,益智網站,客製化官網,前端作品,Vue.js,React,Canvas,Web Audio,兒童遊樂園,坦克大戰,Poyu Chen,陳柏妤,全端架構師',
+          ogImage: 'https://chenpoyu.github.io/images/portfolio/og-portfolio.png',
+          ogImageWidth: '1200',
+          ogImageHeight: '630',
+          canonical: 'https://chenpoyu.github.io/#/portfolio'
+        }
+      },
     ]
   },
 

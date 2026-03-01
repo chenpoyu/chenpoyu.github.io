@@ -64,6 +64,40 @@ export default route(function (/* { store, ssrContext } */) {
       }
     }
 
+    // Update Open Graph image
+    if (to.meta && to.meta.ogImage) {
+      let ogImage = document.querySelector('meta[property="og:image"]')
+      if (ogImage) {
+        ogImage.setAttribute('content', to.meta.ogImage)
+      }
+      let ogImageWidth = document.querySelector('meta[property="og:image:width"]')
+      if (ogImageWidth && to.meta.ogImageWidth) {
+        ogImageWidth.setAttribute('content', to.meta.ogImageWidth)
+      }
+      let ogImageHeight = document.querySelector('meta[property="og:image:height"]')
+      if (ogImageHeight && to.meta.ogImageHeight) {
+        ogImageHeight.setAttribute('content', to.meta.ogImageHeight)
+      }
+      let twitterImage = document.querySelector('meta[name="twitter:image"]')
+      if (twitterImage) {
+        twitterImage.setAttribute('content', to.meta.ogImage)
+      }
+    }
+
+    // Update canonical URL
+    if (to.meta && to.meta.canonical) {
+      let canonical = document.querySelector('link[rel="canonical"]')
+      if (canonical) {
+        canonical.setAttribute('href', to.meta.canonical)
+      }
+    }
+
+    // Update og:url
+    let ogUrl = document.querySelector('meta[property="og:url"]')
+    if (ogUrl) {
+      ogUrl.setAttribute('content', 'https://chenpoyu.github.io/#' + to.path)
+    }
+
     next()
   })
 

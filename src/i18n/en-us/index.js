@@ -1,6 +1,7 @@
 import home from './home'
 import services from './services'
 import techarch from './techarch'
+import portfolio from './portfolio'
 
 export default {
   failed: 'Action failed',
@@ -21,12 +22,14 @@ export default {
     profile: 'About',
     work: 'Services',
     techarch: 'Technical Experience',
+    portfolio: 'Portfolio',
     blog: 'Blog',
   },
 
   dark_mode: 'Dark Mode',
 
   ...home,
+  ...portfolio,
 
   lang: {
     title: 'lang',

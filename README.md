@@ -151,6 +151,8 @@ chenpoyu.github.io/
 │   │   ├── Home.vue    # Landing page
 │   │   ├── TechArchitecture.vue  # Technical experience showcase
 │   │   ├── Error404.vue
+│   │   ├── portfolio/  # Portfolio page
+│   │   │   └── Portfolio.vue
 │   │   ├── profile/    # About/profile page
 │   │   │   ├── Index.vue
 │   │   │   └── Profile.vue
@@ -207,6 +209,13 @@ chenpoyu.github.io/
 - SSO single sign-on implementation patterns
 - High concurrency system design with CDN and caching
 - Interactive Mermaid diagrams for architecture visualization
+
+### Portfolio (`src/pages/portfolio/Portfolio.vue`)
+- Educational websites: Kids Playground (age 2-6), Senior Brain Training
+- Game projects: Mazu Festival Lucky Draw, Tank Battle, Retro Games Collection
+- Custom brand websites: Personal and business website templates
+- Dynamic OG image thumbnails loaded from each project's meta tags
+- JSON-LD structured data for enhanced search engine visibility
 
 ## 🔒 Environment Variables
 
@@ -314,10 +323,12 @@ For technical consulting inquiries or collaboration opportunities:
 
 This website is fully optimized for search engines:
 - ✅ Comprehensive meta tags (keywords, description, author)
-- ✅ Open Graph and Twitter Card support
-- ✅ Dynamic SEO updates on route changes
+- ✅ Open Graph with 1200×630 social sharing image (`summary_large_image`)
+- ✅ Twitter Card support with large image preview
+- ✅ Dynamic SEO updates on route changes (title, description, og:image, canonical)
 - ✅ Sitemap.xml and robots.txt
-- ✅ Structured Data (JSON-LD) for Person, Service, and Website schemas
+- ✅ Structured Data (JSON-LD) for Person, Service, Website, and CollectionPage schemas
+- ✅ Portfolio page with per-project OG image thumbnails
 - ✅ Semantic HTML with proper lang attributes
 - ✅ Canonical URLs to prevent duplicate content
 
@@ -325,4 +336,4 @@ This website is fully optimized for search engines:
 
 **Built with ❤️ using Vue 3 and Quasar Framework**
 
-*Last Updated: January 2026*
+*Last Updated: February 2026*

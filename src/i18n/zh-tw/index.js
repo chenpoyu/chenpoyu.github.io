@@ -1,6 +1,7 @@
 import home from './home'
 import services from './services'
 import techarch from './techarch'
+import portfolio from './portfolio'
 
 export default {
   failed: '執行失敗',
@@ -21,6 +22,7 @@ export default {
     profile: '關於我',
     work: '服務項目',
     techarch: '技術經驗',
+    portfolio: '作品集',
     blog: '部落格',
   },
 
@@ -34,6 +36,7 @@ export default {
 
   // Import home page translations
   ...home,
+  ...portfolio,
 
   tech: {
     years_exp: '年經驗'

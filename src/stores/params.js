@@ -45,6 +45,13 @@ export const useParamsStore = defineStore('params', {
         open: '_self'
       },
       {
+        title: 'menu.portfolio',
+        caption: '',
+        icon: 'collections',
+        to: '/portfolio',
+        open: '_self'
+      },
+      {
         title: 'menu.blog',
         caption: '',
         icon: 'article',

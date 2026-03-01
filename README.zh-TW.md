@@ -152,6 +152,8 @@ chenpoyu.github.io/
 │   │   ├── Home.vue    # 首頁
 │   │   ├── TechArchitecture.vue  # 技術經驗
 │   │   ├── Error404.vue
+│   │   ├── portfolio/  # 作品集頁面
+│   │   │   └── Portfolio.vue
 │   │   ├── profile/    # 關於我頁面
 │   │   │   ├── Index.vue
 │   │   │   └── Profile.vue
@@ -207,6 +209,13 @@ chenpoyu.github.io/
 - SSO 單一登入實作模式
 - 使用 CDN 與快取的高併發系統設計
 - 互動式 Mermaid 架構圖視覺化
+
+### 作品集 (`src/pages/portfolio/Portfolio.vue`)
+- 教育網站：2-6歲兒童遊樂園、樂齡益智區
+- 遊戲作品：媽祖開壇抽獎、坦克大戰、懷舊遊戲合集
+- 客製化形象官網：個人與商務形象網站模板
+- 動態載入各專案的 OG 縮圖，載入失敗時顯示預設圖示
+- JSON-LD 結構化資料（CollectionPage + ItemList）增強搜尋曝光
 
 ## 🔒 環境變數
 
@@ -321,4 +330,4 @@ test: 新增元件單元測試
 
 **使用 ❤️ 與 Vue 3 + Quasar Framework 打造**
 
-*最後更新：2026年1月*
+*最後更新：2026年2月*
