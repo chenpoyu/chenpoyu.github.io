@@ -1,15 +1,310 @@
 // app global css in SCSS form
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@500;600;700&display=swap');
+
+:root {
+    --brand-navy: #101c2b;
+    --brand-charcoal: #202833;
+    --brand-gold: #a38a63;
+    --brand-ivory: #f3f1ed;
+    --display-font: 'Noto Serif TC', serif;
+    --body-font: 'Manrope', 'PingFang TC', 'Noto Sans TC', sans-serif;
+    --page-bg: #edf1f4;
+    --page-bg-alt: #e4e9ee;
+    --surface-base: #eef2f6;
+    --surface-elevated: rgba(255, 255, 255, 0.74);
+    --surface-strong: rgba(255, 255, 255, 0.9);
+    --surface-muted: rgba(240, 243, 246, 0.9);
+    --surface-hover: rgba(58, 75, 97, 0.08);
+    --surface-border: rgba(53, 71, 92, 0.14);
+    --surface-contrast: #0f1722;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-border: rgba(84, 100, 122, 0.18);
+    --text-strong: #162231;
+    --text-muted: rgba(22, 34, 49, 0.68);
+    --text-soft: rgba(22, 34, 49, 0.5);
+    --text-contrast: #f4f8fb;
+    --shadow-soft: rgba(7, 19, 32, 0.06);
+    --shadow-strong: rgba(7, 19, 32, 0.12);
+    --site-body-bg:
+        radial-gradient(circle at top left, rgba(163, 138, 99, 0.08), transparent 22%),
+        radial-gradient(circle at 82% 10%, rgba(56, 74, 98, 0.08), transparent 20%),
+        linear-gradient(180deg, #eef2f5 0%, #e7ecf1 42%, #e1e7ec 100%);
+    --header-panel-bg: linear-gradient(180deg, rgba(244, 247, 249, 0.74), rgba(237, 241, 245, 0.62));
+    --header-panel-bg-scrolled: linear-gradient(180deg, rgba(243, 246, 249, 0.9), rgba(232, 237, 242, 0.82));
+    --header-panel-border: rgba(38, 56, 78, 0.12);
+    --header-highlight: rgba(255, 255, 255, 0.6);
+    --header-line-glow: linear-gradient(90deg, transparent, rgba(72, 88, 108, 0.14) 18%, rgba(163, 138, 99, 0.26) 50%, rgba(72, 88, 108, 0.14) 82%, transparent);
+    --header-control-bg: rgba(255, 255, 255, 0.34);
+    --header-control-hover: rgba(21, 34, 48, 0.08);
+    --header-control-active: rgba(21, 34, 48, 0.12);
+    --header-mark-bg: linear-gradient(180deg, rgba(16, 28, 43, 0.94), rgba(21, 34, 49, 0.78));
+    --header-mark-border: rgba(82, 100, 121, 0.24);
+    --header-mark-text: rgba(240, 246, 252, 0.94);
+    --header-accent: rgba(36, 53, 74, 0.74);
+    --header-text-primary: rgba(15, 25, 38, 0.94);
+    --header-text-secondary: rgba(15, 25, 38, 0.56);
+    --header-text-meta: rgba(82, 95, 114, 0.74);
+    --header-menu-bg: rgba(244, 247, 249, 0.96);
+    --header-drawer-bg: linear-gradient(180deg, rgba(240, 244, 247, 0.98), rgba(247, 249, 251, 0.96));
+    --header-backdrop-bg: linear-gradient(180deg, rgba(237, 242, 246, 0.88) 0%, rgba(234, 239, 244, 0.8) 58%, rgba(228, 234, 240, 0.72) 100%);
+    --header-backdrop-border: rgba(38, 56, 78, 0.08);
+    --header-backdrop-shadow: 0 12px 28px rgba(18, 28, 40, 0.06);
+    --background-color: var(--page-bg);
+    --font-color-primary: var(--text-strong);
+    --table-backgound-color: var(--surface-strong);
+    --selection-color: rgba(201, 168, 96, 0.24);
+}
+
+body.body--light {
+    color-scheme: light;
+    --page-bg: #edf1f4;
+    --page-bg-alt: #e4e9ee;
+    --surface-base: #eef2f6;
+    --surface-elevated: rgba(255, 255, 255, 0.74);
+    --surface-strong: rgba(255, 255, 255, 0.9);
+    --surface-muted: rgba(240, 243, 246, 0.9);
+    --surface-hover: rgba(58, 75, 97, 0.08);
+    --surface-border: rgba(53, 71, 92, 0.14);
+    --surface-contrast: #0f1722;
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --input-border: rgba(84, 100, 122, 0.18);
+    --text-strong: #162231;
+    --text-muted: rgba(22, 34, 49, 0.68);
+    --text-soft: rgba(22, 34, 49, 0.5);
+    --text-contrast: #f4f8fb;
+    --shadow-soft: rgba(7, 19, 32, 0.06);
+    --shadow-strong: rgba(7, 19, 32, 0.12);
+    --site-body-bg:
+        radial-gradient(circle at top left, rgba(163, 138, 99, 0.08), transparent 22%),
+        radial-gradient(circle at 82% 10%, rgba(56, 74, 98, 0.08), transparent 20%),
+        linear-gradient(180deg, #eef2f5 0%, #e7ecf1 42%, #e1e7ec 100%);
+    --header-panel-bg: linear-gradient(180deg, rgba(244, 247, 249, 0.74), rgba(237, 241, 245, 0.62));
+    --header-panel-bg-scrolled: linear-gradient(180deg, rgba(243, 246, 249, 0.9), rgba(232, 237, 242, 0.82));
+    --header-panel-border: rgba(38, 56, 78, 0.12);
+    --header-highlight: rgba(255, 255, 255, 0.6);
+    --header-line-glow: linear-gradient(90deg, transparent, rgba(72, 88, 108, 0.14) 18%, rgba(163, 138, 99, 0.26) 50%, rgba(72, 88, 108, 0.14) 82%, transparent);
+    --header-control-bg: rgba(255, 255, 255, 0.34);
+    --header-control-hover: rgba(21, 34, 48, 0.08);
+    --header-control-active: rgba(21, 34, 48, 0.12);
+    --header-mark-bg: linear-gradient(180deg, rgba(16, 28, 43, 0.94), rgba(21, 34, 49, 0.78));
+    --header-mark-border: rgba(82, 100, 121, 0.24);
+    --header-mark-text: rgba(240, 246, 252, 0.94);
+    --header-accent: rgba(36, 53, 74, 0.74);
+    --header-text-primary: rgba(15, 25, 38, 0.94);
+    --header-text-secondary: rgba(15, 25, 38, 0.56);
+    --header-text-meta: rgba(82, 95, 114, 0.74);
+    --header-menu-bg: rgba(244, 247, 249, 0.96);
+    --header-drawer-bg: linear-gradient(180deg, rgba(240, 244, 247, 0.98), rgba(247, 249, 251, 0.96));
+    --header-backdrop-bg: linear-gradient(180deg, rgba(237, 242, 246, 0.88) 0%, rgba(234, 239, 244, 0.8) 58%, rgba(228, 234, 240, 0.72) 100%);
+    --header-backdrop-border: rgba(38, 56, 78, 0.08);
+    --header-backdrop-shadow: 0 12px 28px rgba(18, 28, 40, 0.06);
+    --background-color: var(--page-bg);
+    --font-color-primary: var(--text-strong);
+    --table-backgound-color: var(--surface-strong);
+    --selection-color: rgba(201, 168, 96, 0.24);
+}
+
+body.body--dark {
+    color-scheme: dark;
+    --page-bg: #07111b;
+    --page-bg-alt: #0b1624;
+    --surface-base: #07111b;
+    --surface-elevated: rgba(11, 22, 36, 0.76);
+    --surface-strong: rgba(10, 20, 31, 0.9);
+    --surface-muted: rgba(14, 28, 44, 0.9);
+    --surface-hover: rgba(131, 171, 211, 0.14);
+    --surface-border: rgba(131, 171, 211, 0.18);
+    --surface-contrast: #f5efe6;
+    --input-bg: rgba(10, 20, 31, 0.92);
+    --input-border: rgba(131, 171, 211, 0.24);
+    --text-strong: #f3ede4;
+    --text-muted: rgba(243, 237, 228, 0.72);
+    --text-soft: rgba(243, 237, 228, 0.54);
+    --text-contrast: #07111b;
+    --shadow-soft: rgba(0, 0, 0, 0.24);
+    --shadow-strong: rgba(0, 0, 0, 0.34);
+    --header-panel-bg: linear-gradient(180deg, rgba(7, 17, 27, 0.82), rgba(10, 20, 31, 0.64));
+    --header-panel-bg-scrolled: linear-gradient(180deg, rgba(8, 18, 29, 0.9), rgba(10, 20, 31, 0.74));
+    --header-panel-border: rgba(131, 171, 211, 0.18);
+    --header-highlight: rgba(255, 255, 255, 0.1);
+    --header-line-glow: linear-gradient(90deg, transparent, rgba(131, 171, 211, 0.24) 20%, rgba(212, 179, 115, 0.32) 50%, rgba(131, 171, 211, 0.24) 80%, transparent);
+    --header-control-bg: rgba(255, 255, 255, 0.06);
+    --header-control-hover: rgba(131, 171, 211, 0.16);
+    --header-control-active: rgba(131, 171, 211, 0.22);
+    --header-mark-bg: linear-gradient(180deg, rgba(11, 22, 36, 0.96), rgba(18, 37, 58, 0.88));
+    --header-mark-border: rgba(131, 171, 211, 0.28);
+    --header-mark-text: rgba(243, 237, 228, 0.96);
+    --header-accent: rgba(212, 179, 115, 0.9);
+    --site-body-bg:
+        radial-gradient(circle at top left, rgba(201, 168, 96, 0.12), transparent 20%),
+        radial-gradient(circle at top right, rgba(131, 171, 211, 0.08), transparent 18%),
+        linear-gradient(180deg, #07111d 0%, #0b1624 44%, #08111c 100%);
+    --header-text-primary: rgba(243, 237, 228, 0.96);
+    --header-text-secondary: rgba(243, 237, 228, 0.62);
+    --header-text-meta: rgba(212, 179, 115, 0.86);
+    --header-menu-bg: rgba(10, 20, 31, 0.96);
+    --header-drawer-bg: linear-gradient(180deg, rgba(8, 18, 29, 0.98), rgba(10, 20, 31, 0.96));
+    --header-backdrop-bg: linear-gradient(180deg, rgba(8, 18, 29, 0.94) 0%, rgba(10, 20, 31, 0.88) 56%, rgba(9, 23, 38, 0.78) 100%);
+    --header-backdrop-border: rgba(131, 171, 211, 0.08);
+    --header-backdrop-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+    --background-color: var(--page-bg);
+    --font-color-primary: var(--text-strong);
+    --table-backgound-color: rgba(10, 20, 31, 0.92);
+    --selection-color: rgba(212, 179, 115, 0.3);
+}
+
 body {
-    font-size: 1rem;
-    color: var(--font-color-primary);
-    background-color: var(--background-color);
+        font-family: var(--body-font);
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--text-strong);
+        background: var(--site-body-bg);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        transition: background 0.35s ease, color 0.35s ease;
+}
+
+body.body--dark {
+        background: var(--site-body-bg);
+}
+
+#q-app,
+.q-layout,
+.q-page-container,
+.q-page {
+    min-height: 100vh;
+    color: inherit;
+    background: transparent;
+}
+
+.q-card:not([class*='bg-']) {
+    color: var(--text-strong);
+    background: var(--surface-strong);
+    border-color: var(--surface-border);
+    box-shadow: 0 18px 40px var(--shadow-soft);
+}
+
+.q-menu {
+    color: var(--text-strong);
+    background: var(--surface-strong);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 18px 40px var(--shadow-soft);
+}
+
+.q-chip:not([class*='bg-']) {
+    color: var(--text-strong);
+    background: var(--surface-muted);
+    border: 1px solid var(--surface-border);
+}
+
+.q-item__label--caption {
+    color: var(--text-muted);
+}
+
+.q-field--outlined .q-field__control {
+    color: var(--text-strong);
+    background: var(--input-bg);
+}
+
+.q-field--outlined .q-field__control:before {
+    border-color: var(--input-border);
+}
+
+.q-field--outlined:hover .q-field__control:before {
+    border-color: var(--header-accent);
+}
+
+.q-field__native,
+.q-field__input,
+.q-field__prefix,
+.q-field__suffix,
+.q-field__marginal,
+.q-field__label,
+.q-select__dropdown-icon {
+    color: var(--text-muted);
+}
+
+.q-field__native,
+.q-field__input,
+.q-field__native span,
+.q-field__input span {
+    color: var(--text-strong) !important;
+}
+
+.q-placeholder,
+.q-field__native::placeholder,
+.q-field__input::placeholder {
+    color: var(--text-soft);
+    opacity: 1;
+}
+
+.q-separator {
+    background: var(--surface-border);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--display-font);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+p, li, span, label, input, textarea, button {
+    font-family: var(--body-font);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+::selection {
+    background: var(--selection-color);
+}
+
+[data-reveal] {
+    opacity: 0;
+    filter: blur(8px);
+    transform: translate3d(0, 42px, 0) scale(0.975);
+    transform-origin: center bottom;
+    transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: transform, opacity;
+}
+
+[data-reveal='left'] {
+    transform: translate3d(-48px, 8px, 0) scale(0.975);
+}
+
+[data-reveal='right'] {
+    transform: translate3d(48px, 8px, 0) scale(0.975);
+}
+
+[data-reveal='zoom'] {
+    transform: translate3d(0, 30px, 0) scale(0.94);
+}
+
+[data-reveal='up'] {
+    transform: translate3d(0, 52px, 0) scale(0.978);
+}
+
+[data-reveal].is-visible {
+    opacity: 1;
+    filter: none;
+    transform: none;
 }
 
 .footer {
-  height: 30px;
-  color: var(--font-color-primary);
-  background-color: var(--background-color);
-  justify-content: center;
+    min-height: 52px;
+    padding: 0 16px;
+    color: var(--text-muted);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.1));
+    border-top: 1px solid var(--surface-border);
+        backdrop-filter: blur(10px);
+        justify-content: center;
+    align-items: center;
 }
 
 /* Open Data Block */
@@ -20,7 +315,7 @@ body {
             line-height: 24px;
             letter-spacing: .01785714em;
             font-weight: 500;
-            font-wrap: wrap;
+            overflow-wrap: anywhere;
             max-width: 80px;
         }
     }
@@ -79,5 +374,18 @@ body {
 /* Open Data Block */
 
 .site-text-shadow {
-  text-shadow: #575757 0.1em 0.1em 0.2em
+    text-shadow: rgba(0, 0, 0, 0.22) 0.1em 0.1em 0.2em
+}
+
+.q-btn {
+    border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-reveal] {
+        opacity: 1;
+        filter: none;
+        transform: none;
+        transition: none;
+    }
 }

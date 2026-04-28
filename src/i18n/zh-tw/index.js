@@ -1,7 +1,7 @@
 import home from './home'
 import services from './services'
 import techarch from './techarch'
-import portfolio from './portfolio'
+import aiWorkflow from './ai-workflow'
 
 export default {
   failed: '執行失敗',
@@ -17,12 +17,22 @@ export default {
   myname: 'Poyu Chen 陳柏妤',
   footer: 'Copyright © 2026 Poyu Chen. All rights reserved.',
 
+  header: {
+    brand_name_primary: 'Poyu Chen',
+    brand_name_secondary: '陳柏妤',
+    brand_role: '系統架構・全端開發',
+    theme: '切換明暗模式',
+    light: '淺色',
+    dark: '深色',
+    language: '切換語言',
+  },
+
   menu: {
     home: '首頁',
     profile: '關於我',
     work: '服務項目',
-    techarch: '技術經驗',
-    portfolio: '作品集',
+    techarch: '架構案例',
+    aiWorkflow: 'AI 開發工作流',
     blog: '部落格',
   },
 
@@ -36,7 +46,7 @@ export default {
 
   // Import home page translations
   ...home,
-  ...portfolio,
+  ...aiWorkflow,
 
   tech: {
     years_exp: '年經驗'
@@ -289,13 +299,58 @@ export default {
   },
 
   profile: {
-    label: '核心優勢：13 年全端技術經驗與 40+ 人團隊管理實戰',
-    description: '畢業於國立中興大學資訊管理學系，擁有超過 13 年的軟體開發與技術管理深度經驗。職涯前期深耕 Java 工程師領域，後期晉升為軟體處處長，具備從第一線代碼撰寫到高層技術決策的完整視角。\n\n精通 Java (Spring) 與 .NET Core 雙體系，熟練運用 Vue.js/React、PostgreSQL 與雲端架構 (AWS/Azure)。曾多次設計並維護高併發、大流量系統（如 IoT、車聯網），確保系統在複雜場景下的穩定性。\n\n在帶領 32 至 40 人團隊的過程中，不僅負責進度管控，更專注於「最佳解決方案的評估」。能迅速切入陌生專案並掌握核心問題，提供專業判斷以排除技術障礙，確保資源精準投放。',
+    label: '13 年全端開發、架構設計與技術管理經驗',
+    cover_eyebrow: 'About',
+    cover_summary: '擅長把複雜系統、跨部門需求與團隊交付節奏，整理成能長期演進的技術結構。',
+    intro_eyebrow: '從第一線開發到技術管理',
+    description: '職涯從工程師起步，核心能力一直圍繞在系統設計、問題拆解與交付落地。從 Java 後端開發、資料庫設計，到前端、雲端與整合架構，逐步累積出一套能從需求一路走到上線的完整視角。\n\n長期處理車聯網、物聯網、會員整合、電商與政府專案等高複雜度題型。面對高流量、跨系統整合與長期維運壓力，在意的不只是功能完成，而是系統能否穩定、團隊能否持續、決策能否支撐下一階段的成長。\n\n進入管理角色後，帶領過 32 至 40 人規模的團隊，負責技術判斷、架構方向、人才培育與專案節奏校準。理想中的技術管理，不是遠離現場，而是在複雜局面裡，依然能把問題說清楚、把方向拉正、把資源放在真正有價值的位置。',
     develop: '技術開發',
     leader: '團隊領導',
     teach: '傳承分享',
-    label2: '我深信，成功與不成功的企業家之所以不同，有半數原因在於能否堅持下去。',
-    label2_from: '── Steve Jobs',
+    quote: '真正重要的，不只是把系統做出來，而是把複雜度整理到團隊可以持續交付，也能持續成長。',
+    quote_from: '── Poyu Chen',
+    sections: {
+      stats: {
+        title: '累積下來的工作尺度',
+        subtitle: '這些數字不是履歷裝飾，而是長期在交付現場累積出來的工作痕跡。'
+      },
+      values: {
+        title: '做事的核心方式',
+        subtitle: '比起炫技，更重視問題定義、系統結構、交付品質與團隊成長是否能被一起照顧。'
+      },
+      projects: {
+        title: '代表專案',
+        subtitle: '這些專案不是技術清單，而是面對高併發、跨系統整合與長期維運時，實際採取過的處理方式。'
+      },
+      skills: {
+        title: '技術能力',
+        subtitle: '技術廣度不是為了堆疊名詞，而是為了在不同場景下，選出真正合適的方法與組合。'
+      },
+      experience: {
+        title: '職涯脈絡',
+        subtitle: '從工程師、資深開發到技術管理，角色雖然變化，核心始終是讓系統與團隊一起變穩。'
+      }
+    },
+    project_highlights_label: '專案亮點',
+    experience_achievements_label: '關鍵成果',
+    pillars: {
+      architecture: {
+        title: '先把問題定義清楚',
+        description: '先釐清需求真正要解的事情、系統邊界與風險來源，再進入技術設計，能避免團隊在模糊方向裡來回重工。'
+      },
+      problem_solving: {
+        title: '把結構做穩，而不是只把功能做完',
+        description: '架構、資料流、責任切分與維運成本需要一起思考。穩定性與可演進性，也應該從一開始就被設計進去。'
+      },
+      team_leadership: {
+        title: '讓交付靠方法，不靠硬撐',
+        description: '技術標準、決策節奏與團隊協作方式都很重要，因為真正可持續的交付，不該建立在少數人的燃燒之上。'
+      },
+      continuous_learning: {
+        title: '持續更新視角與工具箱',
+        description: '持續吸收新技術與新方法，重點不是追逐流行，而是判斷哪些工具真的能改善產品、流程與團隊能力。'
+      }
+    },
     timeline: {
       title1: '學習第一個程式語言 Java',
       message1: '資訊管理學系開啟程式這條路，藉著熱情寫出許許多多的小程式，也在初入門的學校課程中，接觸了傳統的 JSP Servlet，實作會員系統、購物車、商城下單...，奠定日後踏入資訊業的契機。',

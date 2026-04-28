@@ -12,16 +12,16 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #0a2540;
-$secondary : #1a1a1a;
-$accent    : #c9a860;
+$primary   : #101c2b;
+$secondary : #27313d;
+$accent    : #a38a63;
 
-$dark      : #0d0d0d;
+$dark      : #0a1016;
 
-$positive  : #4a7c59;
-$negative  : #a83737;
-$info      : #4a6b84;
-$warning   : #c9a860;
+$positive  : #5f7468;
+$negative  : #a14545;
+$info      : #5d748c;
+$warning   : #a38a63;
 
 $background-color: #e9eaea;
 $font-color-primary: #797879;
@@ -29,16 +29,16 @@ $table-backgound-color: #ffffff;
 
 
 body.body--light {
-    --q-color-primary   : #0a2540;
-    --q-color-secondary : #1a1a1a;
-    --q-color-accent    : #c9a860;
+    --q-color-primary   : #101c2b;
+    --q-color-secondary : #27313d;
+    --q-color-accent    : #a38a63;
 
-    --q-color-dark      : #0d0d0d;
+    --q-color-dark      : #0a1016;
 
-    --q-color-positive  : #4a7c59;
-    --q-color-negative  : #a83737;
-    --q-color-info      : #4a6b84;
-    --q-color-warning   : #c9a860;
+    --q-color-positive  : #5f7468;
+    --q-color-negative  : #a14545;
+    --q-color-info      : #5d748c;
+    --q-color-warning   : #a38a63;
 
     --background-color: #e9eaea;
     --font-color-primary: #797879;
@@ -48,16 +48,16 @@ body.body--light {
 // .body--dark
 // body.body--dark -> override
 body.body--dark {
-    --q-color-primary   : #1a3a52;
-    --q-color-secondary : #2a2a2a;
-    --q-color-accent    : #d4b373;
+    --q-color-primary   : #162435;
+    --q-color-secondary : #313c49;
+    --q-color-accent    : #b09973;
 
-    --q-color-dark      : #0d0d0d;
+    --q-color-dark      : #0a1016;
 
-    --q-color-positive  : #5a8c6a;
-    --q-color-negative  : #b84545;
-    --q-color-info      : #5a7b94;
-    --q-color-warning   : #d4b373;
+    --q-color-positive  : #678072;
+    --q-color-negative  : #b75a5a;
+    --q-color-info      : #68819b;
+    --q-color-warning   : #b09973;
 
     --background-color: #000000;
     --font-color-primary: #797879;

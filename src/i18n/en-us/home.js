@@ -1,10 +1,51 @@
 export default {
   hero: {
+    eyebrow: 'Technical Advisory / Architecture Strategy / Critical Delivery',
     title: 'Poyu Chen',
-    subtitle: 'Senior Full-Stack Architect / Technical Team Leader',
-    description: '13+ Years Experience • Vehicle Network/IoT Expert • E-commerce & SSO Architect • Team Leadership',
-    cta_primary: 'Contact Me',
-    cta_secondary: 'Learn More'
+    subtitle: 'Turning complex products, cross-system delivery, and technical uncertainty into clear, scalable execution',
+    description: 'I help companies and product teams resolve architecture drift, system complexity, delivery friction, and quality instability so technology can support growth instead of slowing it down.',
+    note: 'The goal is not simply to ship features, but to align direction, structure, team rhythm, and quality into something that can keep moving forward.',
+    cta_primary: 'Book A Strategy Call',
+    cta_secondary: 'See How I Work'
+  },
+  curation: {
+    badge: 'Editorial Positioning',
+    title: 'What you need is a technical advisor with judgment',
+    subtitle: 'When requirements blur, systems grow heavy, and delivery slows down, the real gap is usually not headcount. It is a clear technical direction.',
+    note: 'My role is to separate signal from noise, clarify the key decisions, and realign architecture, process, and team execution.',
+    items: {
+      positioning: {
+        title: 'Define the real problem first',
+        description: 'Before implementation starts, I make the business objective, risk surface, and system boundary explicit so the team does not waste energy inside ambiguity.'
+      },
+      systems: {
+        title: 'Design for sustainability',
+        description: 'I do not only connect features. I also shape responsibility boundaries, data flow, extensibility, and operational cost into the system.'
+      },
+      leadership: {
+        title: 'Make delivery feel professional',
+        description: 'Quality shows up in decisions, pacing, standards, and collaboration. Not just in working code, but in an experience people can trust.'
+      }
+    }
+  },
+  domains: {
+    badge: 'Selected Domains',
+    title: 'Three environments where I create the most leverage',
+    subtitle: 'Not a broad list of technologies, but the kinds of problems where I can genuinely help restore clarity and execution.',
+    items: {
+      iot: {
+        title: 'Vehicle Network / IoT Systems',
+        description: 'Real-time data, device integration, and high concurrency require stable architecture, explicit responsibility, and room to evolve.'
+      },
+      commerce: {
+        title: 'Commerce and Operation Platforms',
+        description: 'From order flow and membership to inventory, payment, and operations, the goal is efficiency with a coherent end-to-end experience.'
+      },
+      integration: {
+        title: 'Membership Integration and Enterprise Collaboration',
+        description: 'I am used to untangling cross-brand identity, permissions, and process governance so complex systems stay manageable.'
+      }
+    }
   },
   profile_cta: {
     title: 'Want to learn more about my professional background?',
@@ -47,38 +88,64 @@ export default {
     }
   },
   services: {
-    title: 'Professional Services',
-    subtitle: 'Provide comprehensive technical solutions from architecture design to implementation deployment',
+    badge: 'Signature Services',
+    title: 'How I usually engage',
+    subtitle: 'From architecture strategy and critical implementation to team calibration, I step in where technical execution needs structure and direction.',
     items: {
       architecture: {
-        title: 'System Architecture Design',
-        description: 'Provide enterprise-level system architecture planning and technical selection',
+        title: 'Architecture Planning And Technical Direction',
+        description: 'Rebuild the technical structure around current constraints and future growth, with clearer trade-offs and stronger foundations.',
         features: [
-          'Microservices Architecture Design & Implementation',
-          'High-Concurrency System Optimization',
-          'Cloud-Native Architecture Planning (AWS/Azure)',
-          'Database Architecture Design & Tuning'
+          'Refactoring direction and technical decisions',
+          'High-traffic and reliability architecture tuning',
+          'Cloud and deployment strategy planning',
+          'Data and service boundary redesign'
         ]
       },
       consulting: {
-        title: 'Full-Stack Development',
-        description: 'Full-stack development capabilities from frontend to backend to mobile apps',
+        title: 'Critical Build And Integration Delivery',
+        description: 'I step into the hard parts directly, especially where teams need stronger execution across systems, modules, and release-critical flows.',
         features: [
-          'Web Application Development (Vue.js / React)',
-          'Backend Service Development (Java / .NET Core / PHP)',
-          'Mobile App Development (iOS / Flutter)',
-          'RESTful API Design & Integration'
+          'Critical frontend and backend modules',
+          'Cross-system API and workflow integration',
+          'Performance, stability, and maintainability tuning',
+          'Hands-on support from framing to release'
         ]
       },
       team_building: {
-        title: 'Team Management & Training',
-        description: 'Lead technical teams, develop talent, enhance overall technical capabilities',
+        title: 'Technical Leadership And Team Calibration',
+        description: 'Build clearer technical standards, delivery rhythm, and collaboration patterns so the team no longer relies on heroics.',
         features: [
-          'Project Management & Agile Practices',
-          'Technical Mentoring & Training',
-          'Code Review & Quality Control',
-          'Engineering Culture Building'
+          'Technical decision support and evaluation',
+          'Code review and quality baseline design',
+          'Workflow and role alignment',
+          'A clearer bridge between leadership and engineering'
         ]
+      }
+    }
+  },
+  pathways: {
+    badge: 'Explore Further',
+    title: 'Three quick ways to understand how I can help',
+    subtitle: 'If you are evaluating a collaboration, these paths give you the background, engagement model, and AI-enabled workflow behind the work.',
+    items: {
+      about: {
+        tag: 'Profile',
+        title: 'About Me',
+        description: 'See the full background, technical depth, and project record behind the way I lead and deliver.',
+        button: 'View Background'
+      },
+      services: {
+        tag: 'Services',
+        title: 'Services',
+        description: 'Understand how I approach architecture planning, critical delivery, team calibration, and advisory support.',
+        button: 'See Engagement Model'
+      },
+      workflow: {
+        tag: 'AI Workflow',
+        title: 'AI Development Workflow',
+        description: 'See how AI is integrated into real product delivery, not as a gimmick, but as a disciplined working method.',
+        button: 'Open Workflow'
       }
     }
   },

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Traditional Chinese">
+  <rect width="64" height="64" rx="32" fill="#f5f7fa"/>
+  <circle cx="32" cy="32" r="30" fill="#dfe7ef"/>
+  <path d="M14 18h22v18H14z" fill="#c91f37"/>
+  <circle cx="23" cy="27" r="6.5" fill="#1e4f9b"/>
+  <path d="M23 18.5l1.6 4.3 4.5-.7-3 3.4 3 3.5-4.5-.8-1.6 4.3-1.7-4.3-4.4.8 2.9-3.5-2.9-3.4 4.4.7z" fill="#fff"/>
+  <path d="M18 44c3.9-3.7 8.8-5.6 14.8-5.6 5.6 0 10.7 1.7 15.2 5.1" fill="none" stroke="#5d748c" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

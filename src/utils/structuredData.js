@@ -60,10 +60,10 @@ export const professionalServiceSchema = {
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Poyu Chen Portfolio',
-  alternateName: '陳柏妤作品集',
+  name: 'Poyu Chen',
+  alternateName: '陳柏妤',
   url: 'https://chenpoyu.github.io/',
-  description: 'Professional portfolio showcasing 13+ years of full-stack development and technical leadership experience',
+  description: 'AI-driven full-stack architect sharing engineering workflow, system design, and shipped product work',
   author: {
     '@type': 'Person',
     name: 'Poyu Chen'

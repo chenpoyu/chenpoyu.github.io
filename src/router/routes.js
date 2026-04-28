@@ -38,23 +38,24 @@ const routes = [
         name: 'tech-architecture',
         component: () => import('pages/TechArchitecture.vue'),
         meta: {
-          title: '架構設計實踐 - 技術架構展示',
-          description: '展示微服務架構、物聯網系統、SSO單一登入、高併發系統等實際架構設計經驗。',
-          keywords: '微服務架構,物聯網,IoT,SSO,高併發,系統設計,技術架構'
+          title: '架構案例 - Poyu Chen 陳柏妤 | 跨系統整合・SSO・高流量平台',
+          description: '聚焦跨系統整合、會員身分治理、車聯網/物聯網事件流與高流量平台等架構案例，說明我如何做技術判斷與設計收斂。',
+          keywords: '架構案例,系統架構,跨系統整合,SSO,會員整合,物聯網,車聯網,高流量平台,技術判斷,系統設計'
         }
       },
       {
-        path: '/portfolio',
-        name: 'portfolio',
-        component: () => import('pages/portfolio/Portfolio.vue'),
+        path: '/ai-workflow',
+        alias: '/portfolio',
+        name: 'ai-workflow',
+        component: () => import('pages/ai-workflow/AiWorkflow.vue'),
         meta: {
-          title: '作品集 - Poyu Chen 陳柏妤 | 互動遊戲 ・ 教育網站 ・ 客製化官網',
-          description: '精選互動小遊戲、教育益智網站與客製化品牌官網，涵蓋 React、Vue 3、Canvas、Web Audio 等多元技術。包含兒童遊樂園、坦克大戰、媽祖抽獎等上線作品。',
-          keywords: '作品集,Portfolio,互動遊戲,教育網站,益智網站,客製化官網,前端作品,Vue.js,React,Canvas,Web Audio,兒童遊樂園,坦克大戰,Poyu Chen,陳柏妤,全端架構師',
+          title: 'AI 開發工作流 - Poyu Chen 陳柏妤 | Vibe Coding ・ AI 協作 ・ 上線作品',
+          description: '說明我如何把 AI 導入真實開發流程，從需求拆解、原型生成、程式修正到上線驗證，並以教育網站、互動遊戲與品牌網站作為實戰案例。',
+          keywords: 'AI 工作流,AI 開發,Vibe Coding,Prompt Engineering,作品案例,互動遊戲,教育網站,品牌官網,Vue.js,React,Quasar,Poyu Chen,陳柏妤',
           ogImage: 'https://chenpoyu.github.io/images/portfolio/og-portfolio.png',
           ogImageWidth: '1200',
           ogImageHeight: '630',
-          canonical: 'https://chenpoyu.github.io/#/portfolio'
+          canonical: 'https://chenpoyu.github.io/#/ai-workflow'
         }
       },
     ]

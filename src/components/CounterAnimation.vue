@@ -46,8 +46,6 @@ export default {
       }
 
       const startTime = performance.now()
-      const endTime = startTime + duration
-
       const animate = (currentTime) => {
         const elapsed = currentTime - startTime
         const progress = Math.min(elapsed / duration, 1)

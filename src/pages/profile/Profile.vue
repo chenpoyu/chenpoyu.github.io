@@ -1,32 +1,78 @@
 <template>
-  <q-page class="">
-    <div class="row">
+  <q-page ref="profilePageRef" class="profile-page" :class="{ 'profile-page--dark': $q.dark.isActive }">
+    <div class="row profile-cover">
       <q-img
         src="~assets/learn.jpeg"
-        height="300px"
+        :height="$q.screen.gt.sm ? '420px' : '320px'"
         native-context-menu
       >
-        <div :class="['absolute-full', 'flex', 'flex-center', 'text-h4', 'text-bold']">
-          {{ $t('profile.label') }}
+        <div class="absolute-full profile-cover-overlay">
+          <div class="container profile-cover-shell" data-reveal="up">
+            <p class="profile-cover-eyebrow">{{ $t('profile.cover_eyebrow') }}</p>
+            <h1 class="profile-cover-title">{{ $t('myname') }}</h1>
+            <p class="profile-cover-text">{{ $t('profile.cover_summary') }}</p>
+          </div>
         </div>
       </q-img>
     </div>
 
-    <div :class="['row justify-center q-my-xl', $q.screen.gt.xs ? '' : 'q-mx-md']">
-      <div :class="['col-md-3 col-sm-4 text-center',
-        $q.screen.gt.xs ? 'q-mr-xl' : 'q-mb-md'
-      ]">
-        <q-avatar :size="$q.screen.gt.xs ? '270px' : '180px'" class="">
-          <q-img src="~assets/poyu.jpg" />
-        </q-avatar>
-      </div>
-      <div :class="['col-md-7 col-sm-8 self-center', $q.screen.gt.xs ? 'text-left' : 'text-center']">
-        <div :class="['text-bold', 'text-h4', $q.dark.mode ? 'text-white' : 'text-black']">
-          {{ $t('myname') }}
+    <section class="profile-intro-section">
+      <div class="container">
+        <div :class="['row justify-center profile-intro', $q.screen.gt.sm ? 'items-center no-wrap' : 'profile-intro--mobile']" data-reveal="up" style="--reveal-delay: 80ms">
+          <div :class="['col-auto text-center profile-intro-media', $q.screen.gt.sm ? 'q-mr-xl' : 'q-mb-md']">
+            <q-avatar :size="$q.screen.gt.xs ? '240px' : '170px'" class="profile-avatar">
+              <q-img src="~assets/poyu.jpg" />
+            </q-avatar>
+          </div>
+          <div :class="['col profile-intro-copy', $q.screen.gt.sm ? 'text-left' : 'text-left']">
+            <div class="profile-intro-kicker">{{ $t('profile.intro_eyebrow') }}</div>
+            <div class="text-body1 description q-mt-md profile-intro-description">{{ $t('profile.description') }}</div>
+            <div class="profile-quote q-mt-lg">
+              <div class="profile-quote-text">{{ $t('profile.quote') }}</div>
+              <div class="profile-quote-source">{{ $t('profile.quote_from') }}</div>
+            </div>
+          </div>
         </div>
-        <div class="text-body1 description q-mt-md">{{ $t('profile.description') }}</div>
       </div>
-    </div>
+    </section>
+
+    <section class="profile-stats-section q-pb-xl">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">{{ $t('profile.sections.stats.title') }}</h2>
+          <p class="section-subtitle">{{ $t('profile.sections.stats.subtitle') }}</p>
+        </div>
+
+        <div class="profile-stats-grid">
+          <article v-for="stat in profileStats" :key="stat.label" class="profile-stat-card">
+            <q-icon :name="stat.icon" size="32px" :color="stat.color" />
+            <div class="profile-stat-value">
+              <CounterAnimation :value="stat.number" :suffix="stat.suffix" />
+            </div>
+            <div class="profile-stat-label">{{ $t(stat.label) }}</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-values-section q-pb-xl">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">{{ $t('profile.sections.values.title') }}</h2>
+          <p class="section-subtitle">{{ $t('profile.sections.values.subtitle') }}</p>
+        </div>
+
+        <div class="profile-values-grid">
+          <q-card v-for="pillar in valuePillars" :key="pillar.title" flat class="profile-value-card">
+            <q-card-section>
+              <q-icon :name="pillar.icon" size="32px" :color="pillar.color" />
+              <h3 class="profile-value-title">{{ $t(pillar.title) }}</h3>
+              <p class="profile-value-description">{{ $t(pillar.description) }}</p>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </section>
 
     <!-- <div class="row">
       <q-img
@@ -78,8 +124,8 @@
     <!-- Projects Section -->
     <section class="projects-section q-py-xl">
       <div class="container">
-        <h2 class="section-title">{{ $t('projects.title') }}</h2>
-        <p class="section-subtitle">{{ $t('projects.subtitle') }}</p>
+        <h2 class="section-title">{{ $t('profile.sections.projects.title') }}</h2>
+        <p class="section-subtitle">{{ $t('profile.sections.projects.subtitle') }}</p>
 
         <div class="projects-grid">
           <q-card
@@ -104,7 +150,7 @@
               <p class="project-description">{{ $t(project.description) }}</p>
               <q-separator class="q-my-md" />
               <div class="project-highlights">
-                <h4>亮點 / Highlights:</h4>
+                <h4>{{ $t('profile.project_highlights_label') }}</h4>
                 <ul>
                   <li v-for="(highlight, idx) in project.highlights" :key="idx">
                     <q-icon name="star" size="16px" color="amber" />
@@ -121,8 +167,8 @@
     <!-- Skills Section with Progress Bars -->
     <section class="skills-section q-py-xl">
       <div class="container">
-        <h2 class="section-title">{{ $t('skills.title') }}</h2>
-        <p class="section-subtitle">{{ $t('skills.subtitle') }}</p>
+        <h2 class="section-title">{{ $t('profile.sections.skills.title') }}</h2>
+        <p class="section-subtitle">{{ $t('profile.sections.skills.subtitle') }}</p>
 
         <q-tabs
           v-model="skillTab"
@@ -176,8 +222,8 @@
     <!-- Experience Timeline -->
     <section class="experience-section q-py-xl">
       <div class="container">
-        <h2 class="section-title">{{ $t('experience.title') }}</h2>
-        <p class="section-subtitle">{{ $t('experience.subtitle') }}</p>
+        <h2 class="section-title">{{ $t('profile.sections.experience.title') }}</h2>
+        <p class="section-subtitle">{{ $t('profile.sections.experience.subtitle') }}</p>
 
         <q-timeline color="primary" class="experience-timeline">
           <q-timeline-entry
@@ -192,7 +238,7 @@
               <h4 class="exp-company">{{ $t(exp.company) }}</h4>
               <p class="exp-description">{{ $t(exp.description) }}</p>
               <div class="exp-achievements">
-                <h5>主要成就 / Achievements:</h5>
+                <h5>{{ $t('profile.experience_achievements_label') }}</h5>
                 <ul>
                   <li v-for="(achievement, aidx) in exp.achievements" :key="aidx">
                     {{ $t(achievement) }}
@@ -240,8 +286,11 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick, onMounted, onBeforeUnmount } from 'vue'
+import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
+import CounterAnimation from 'components/CounterAnimation.vue'
+import { createRevealObserver } from 'src/utils/revealOnScroll'
 
 const list = [
   {
@@ -544,9 +593,26 @@ const experience = [
 
 export default {
   name: 'Index',
+  components: {
+    CounterAnimation
+  },
   setup() {
+    const $q = useQuasar()
     const { tm } = useI18n()
     const skillTab = ref(0)
+    const profilePageRef = ref(null)
+    let revealObserver = null
+
+    onMounted(async () => {
+      await nextTick()
+      revealObserver = createRevealObserver()
+      const root = profilePageRef.value?.$el || profilePageRef.value
+      revealObserver.observe(root?.querySelectorAll('[data-reveal]'))
+    })
+
+    onBeforeUnmount(() => {
+      revealObserver?.disconnect()
+    })
 
     const skillCategoriesWithItems = computed(() => {
       const skillItems = tm('skills.items')
@@ -561,14 +627,52 @@ export default {
       }))
     })
 
+    const profileStats = [
+      { icon: 'work_history', color: 'primary', number: 13, suffix: '+', label: 'stats.years' },
+      { icon: 'engineering', color: 'accent', number: 100, suffix: '+', label: 'stats.projects' },
+      { icon: 'groups', color: 'positive', number: 40, suffix: '+', label: 'stats.team' },
+      { icon: 'code', color: 'info', number: 20, suffix: '+', label: 'stats.technologies' }
+    ]
+
+    const valuePillars = [
+      {
+        icon: 'rocket_launch',
+        color: 'accent',
+        title: 'profile.pillars.architecture.title',
+        description: 'profile.pillars.architecture.description'
+      },
+      {
+        icon: 'verified',
+        color: 'positive',
+        title: 'profile.pillars.problem_solving.title',
+        description: 'profile.pillars.problem_solving.description'
+      },
+      {
+        icon: 'bolt',
+        color: 'warning',
+        title: 'profile.pillars.team_leadership.title',
+        description: 'profile.pillars.team_leadership.description'
+      },
+      {
+        icon: 'trending_up',
+        color: 'info',
+        title: 'profile.pillars.continuous_learning.title',
+        description: 'profile.pillars.continuous_learning.description'
+      }
+    ]
+
     return {
+      $q,
+      profilePageRef,
       list,
       timelines,
       cards,
       projects,
       skillCategories: skillCategoriesWithItems,
       experience,
-      skillTab
+      skillTab,
+      profileStats,
+      valuePillars
     }
   },
   computed: {
@@ -584,6 +688,190 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.profile-page {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at top right, rgba(163, 138, 99, 0.08), transparent 26%),
+    radial-gradient(circle at top left, rgba(54, 70, 90, 0.06), transparent 24%),
+    linear-gradient(180deg, #edf1f4 0%, #f4f6f8 28%, #e7ecf1 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0));
+    pointer-events: none;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.profile-cover {
+  .q-img {
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    overflow: hidden;
+  }
+}
+
+.profile-cover-overlay {
+  display: flex;
+  align-items: flex-end;
+  background: linear-gradient(135deg, rgba(12, 18, 28, 0.82) 0%, rgba(21, 32, 46, 0.72) 45%, rgba(14, 22, 34, 0.88) 100%);
+}
+
+.profile-cover-shell {
+  width: 100%;
+  padding: 0 2rem 2.75rem;
+  max-width: 900px;
+}
+
+.profile-cover-eyebrow,
+.profile-quote-source {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 96, 0.95);
+  color: rgba(163, 138, 99, 0.9);
+}
+
+.profile-cover-title,
+.profile-intro-name,
+.profile-value-title,
+.section-title,
+.project-name,
+.exp-company {
+  font-family: var(--display-font);
+  letter-spacing: 0.02em;
+}
+
+.profile-cover-title {
+  margin: 0.75rem 0 0;
+  font-size: clamp(2.8rem, 6vw, 4.8rem);
+  line-height: 1.04;
+  color: #f8f5ef;
+}
+
+.profile-cover-text {
+  max-width: 760px;
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.profile-intro-section {
+  position: relative;
+  margin-top: -64px;
+  z-index: 3;
+  padding: 0 0 1.5rem;
+}
+
+.profile-intro {
+  margin: 0;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(241, 245, 248, 0.92));
+  border: 1px solid rgba(33, 49, 66, 0.08);
+  box-shadow: 0 28px 60px rgba(16, 28, 43, 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.profile-avatar {
+  border: 2px solid rgba(163, 138, 99, 0.4);
+  box-shadow: 0 20px 45px rgba(16, 28, 43, 0.16);
+}
+
+.profile-intro-copy {
+  min-width: 0;
+}
+
+.profile-intro-kicker {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(82, 95, 114, 0.72);
+}
+
+.profile-intro-description {
+  color: rgba(23, 33, 43, 0.76);
+}
+
+.profile-quote {
+  padding: 1.25rem 1.35rem;
+  border-left: 3px solid rgba(163, 138, 99, 0.7);
+  background: rgba(255, 255, 255, 0.66);
+  border-radius: 18px;
+  box-shadow: 0 14px 30px rgba(16, 28, 43, 0.06);
+}
+
+.profile-quote-text {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  color: rgba(23, 33, 43, 0.8);
+}
+
+.profile-quote-source {
+  margin-top: 0.8rem;
+  color: rgba(10, 37, 64, 0.58);
+}
+
+.section-header {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.profile-stats-grid,
+.profile-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.profile-stat-card,
+.profile-value-card {
+  border-radius: 24px;
+  border: 1px solid rgba(33, 49, 66, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(241, 245, 248, 0.9));
+  box-shadow: 0 18px 40px rgba(16, 28, 43, 0.06);
+}
+
+.profile-stat-card {
+  padding: 1.5rem;
+}
+
+.profile-stat-value {
+  margin-top: 0.9rem;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--brand-navy);
+}
+
+.profile-stat-label {
+  margin-top: 0.45rem;
+  color: rgba(23, 33, 43, 0.68);
+}
+
+.profile-value-title {
+  margin: 1rem 0 0;
+  font-size: 1.28rem;
+  color: var(--brand-navy);
+}
+
+.profile-value-description {
+  margin: 0.75rem 0 0;
+  line-height: 1.85;
+  color: rgba(23, 33, 43, 0.72);
+}
+
 .description {
   white-space: pre-line;
 }
@@ -628,7 +916,7 @@ export default {
 // Projects Section
 .projects-section {
   padding: 5rem 0;
-  background: white;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(239, 243, 246, 0.76));
 
   .projects-grid {
     display: grid;
@@ -642,12 +930,13 @@ export default {
     .project-card {
       border-radius: 16px;
       transition: all 0.3s ease;
-      border: 2px solid #e0e0e0;
+      border: 1px solid rgba(33, 49, 66, 0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(243, 246, 249, 0.92));
 
       &:hover {
         transform: translateY(-8px);
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        border-color: #c9a860;
+        border-color: rgba(163, 138, 99, 0.28);
       }
 
       .project-header {
@@ -702,19 +991,19 @@ export default {
 // Skills Section
 .skills-section {
   padding: 5rem 0;
-  background: linear-gradient(to bottom, #ede8e3 0%, #f5f3f0 100%);
+  background: linear-gradient(180deg, rgba(234, 239, 244, 0.84) 0%, rgba(246, 248, 250, 0.44) 100%);
 
   .skill-tabs {
-    background: white;
+    background: rgba(255, 255, 255, 0.82);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(16, 28, 43, 0.06);
     margin-bottom: 2rem;
   }
 
   .skill-panels {
-    background: white;
+    background: rgba(255, 255, 255, 0.82);
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 24px rgba(16, 28, 43, 0.06);
   }
 
   .skills-list {
@@ -724,15 +1013,15 @@ export default {
 
   .skill-item {
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(201, 168, 96, 0.03) 0%, rgba(201, 168, 96, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(163, 138, 99, 0.03) 0%, rgba(54, 70, 90, 0.06) 100%);
     border-radius: 12px;
-    border: 1px solid rgba(201, 168, 96, 0.15);
+    border: 1px solid rgba(163, 138, 99, 0.12);
     transition: all 0.3s ease;
 
     &:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(201, 168, 96, 0.15);
-      border-color: rgba(201, 168, 96, 0.3);
+      box-shadow: 0 8px 24px rgba(16, 28, 43, 0.08);
+      border-color: rgba(163, 138, 99, 0.24);
     }
 
     .skill-header {
@@ -785,7 +1074,7 @@ export default {
 // Experience Section
 .experience-section {
   padding: 5rem 0;
-  background: white;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(239, 243, 246, 0.68));
 
   .experience-timeline {
     max-width: 900px;
@@ -839,8 +1128,157 @@ export default {
   }
 }
 
+@media (max-width: 1180px) {
+  .profile-stats-grid,
+  .profile-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-cover {
+    .q-img {
+      border-bottom-left-radius: 22px;
+      border-bottom-right-radius: 22px;
+    }
+  }
+
+  .profile-cover-overlay {
+    align-items: flex-end;
+    padding-bottom: 0.5rem;
+    background: linear-gradient(180deg, rgba(10, 17, 27, 0.52) 0%, rgba(10, 17, 27, 0.62) 48%, rgba(10, 17, 27, 0.78) 100%);
+  }
+
+  .profile-cover-shell {
+    max-width: calc(100% - 16px);
+    margin: 0 auto;
+    padding: 0.95rem 0.95rem 1rem;
+    border-radius: 22px;
+    background: linear-gradient(180deg, rgba(8, 16, 25, 0.2), rgba(8, 16, 25, 0.48));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .profile-intro-section {
+    margin-top: -168px;
+    padding-bottom: 1rem;
+  }
+
+  .profile-intro {
+    padding: 1.15rem 1rem 1.2rem;
+    border-radius: 22px;
+  }
+
+  .profile-intro--mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: start;
+    gap: 1rem;
+  }
+
+  .profile-intro-media {
+    width: 100%;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .profile-intro-copy {
+    width: 100%;
+  }
+
+  .profile-quote {
+    margin-top: 1rem;
+    padding: 1rem 1rem;
+  }
+
+  .profile-stats-grid,
+  .profile-values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .profile-cover {
+    .q-img {
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+    }
+  }
+
+  .profile-cover-title {
+    max-width: 7ch;
+    margin-top: 0.55rem;
+    font-size: clamp(1.86rem, 9.8vw, 2.5rem);
+    line-height: 1.08;
+  }
+
+  .profile-cover-text {
+    margin-top: 0.8rem;
+    max-width: 18rem;
+    font-size: 0.9rem;
+    line-height: 1.68;
+  }
+
+  .profile-cover-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+  }
+
+  .profile-intro {
+    padding: 0.95rem 0.9rem 1.05rem;
+  }
+
+  .profile-avatar {
+    box-shadow: 0 14px 28px rgba(16, 28, 43, 0.12);
+  }
+
+  .profile-intro-description,
+  .profile-quote-text {
+    font-size: 0.96rem;
+    line-height: 1.74;
+  }
+}
+
 // Dark Mode Styles
-body.body--dark {
+.profile-page--dark {
+  background:
+    radial-gradient(circle at top right, rgba(176, 153, 115, 0.1), transparent 24%),
+    radial-gradient(circle at top left, rgba(104, 129, 155, 0.08), transparent 22%),
+    linear-gradient(180deg, #07111d 0%, #0b1624 28%, #08111c 100%);
+
+  .profile-intro,
+  .profile-stat-card,
+  .profile-value-card {
+    background: linear-gradient(180deg, rgba(12, 18, 27, 0.84), rgba(15, 24, 36, 0.92));
+    border-color: rgba(176, 153, 115, 0.12);
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.22);
+  }
+
+  .projects-section,
+  .skills-section,
+  .experience-section {
+    background: transparent;
+  }
+
+  .profile-intro-kicker,
+  .profile-quote-source,
+  .profile-stat-label,
+  .profile-value-description {
+    color: rgba(243, 237, 228, 0.72);
+  }
+
+  .profile-intro-description,
+  .profile-quote-text,
+  .profile-stat-value,
+  .profile-value-title {
+    color: #f5efe6;
+  }
+
+  .profile-quote {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
+  }
+
   .section-title {
     color: #ffffff;
   }

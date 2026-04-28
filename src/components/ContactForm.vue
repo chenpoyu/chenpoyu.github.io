@@ -270,50 +270,49 @@ export default defineComponent({
 }
 
 .contact-form-card {
+  color: var(--text-strong);
+  background: var(--surface-strong);
+  border-color: var(--surface-border);
   border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 14px 32px var(--shadow-soft);
 
   .q-card__section {
     padding: 32px;
   }
 
-  // 標題樣式
   .form-title {
-    color: #1a1a1a;
+    color: var(--text-strong);
     font-weight: 600;
 
     .title-icon {
-      color: #c9a860;
+      color: var(--brand-gold);
     }
   }
 
   .form-subtitle {
-    color: #666;
+    color: var(--text-muted);
   }
-}
 
-// Dark mode support
-body.body--dark {
-  .contact-form-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
+  :deep(.q-field__control) {
+    background: var(--input-bg);
+  }
 
-    .form-title {
-      color: #ffffff;
+  :deep(.q-field__label) {
+    color: var(--text-soft);
+  }
 
-      .title-icon {
-        color: #c9a860;
-      }
-    }
+  :deep(.q-field__native),
+  :deep(.q-field__input),
+  :deep(.q-field__prepend .q-icon),
+  :deep(.q-field__append .q-icon),
+  :deep(.q-select__dropdown-icon) {
+    color: var(--text-strong) !important;
+  }
 
-    .form-subtitle {
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    // 確保輸入框的 icon 可見
-    .q-field__prepend .q-icon {
-      color: rgba(255, 255, 255, 0.7);
-    }
+  :deep(.q-field__bottom),
+  :deep(.q-field__messages),
+  :deep(.q-field__counter) {
+    color: var(--text-muted);
   }
 }
 

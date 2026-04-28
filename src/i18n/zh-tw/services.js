@@ -1,174 +1,183 @@
 export default {
   servicesPage: {
     hero: {
-      title: '專業技術服務',
-      subtitle: '13 年實戰經驗，提供全方位技術解決方案'
+      eyebrow: 'Technical Advisory / Critical Delivery / Team Calibration',
+      title: '技術顧問與關鍵開發支援',
+      subtitle: '架構變重、整合變亂、交付失速時，我直接進場把局面拉回來。',
+      note: '不是補人力，而是補判斷、節奏與落地能力。'
+    },
+    positioning: {
+      title: '合作通常發生在三種情境',
+      subtitle: '通常不是缺人，而是缺一個能把技術與交付一起拉回正軌的人。',
+      items: [
+        {
+          title: '架構要重整，但不能停下來重做',
+          description: '不停機重整邊界、資料流與方向。'
+        },
+        {
+          title: '專案很重要，但團隊暫時撐不起來',
+          description: '補進關鍵開發與方案判斷。'
+        },
+        {
+          title: '組織成長了，做事方式卻還沒升級',
+          description: '把流程、標準與協作重新對齊。'
+        }
+      ]
     },
     items: [
     {
       title: '系統架構設計與諮詢',
-      description: '為您的專案打造穩定、高效、可擴展的系統架構，從技術選型到實施方案提供全程指導。',
+      description: '把複雜系統整理成更穩、更清楚、也更能擴充的結構。',
       icon: 'architecture',
       color: 'primary',
       offerings: [
         {
           name: '高併發系統架構',
           icon: 'speed',
-          description: '設計能承受大流量、高併發場景的系統架構，包含負載均衡、快取策略、資料庫優化等。'
+          description: '處理大流量、高併發與效能瓶頸。'
         },
         {
           name: '微服務架構設計',
           icon: 'hub',
-          description: '規劃與實施微服務架構，提升系統的可維護性、可擴展性與團隊開發效率。'
+          description: '拆清責任邊界，提升維護與協作效率。'
         },
         {
           name: '雲端架構規劃',
           icon: 'cloud',
-          description: '基於 AWS、Azure 的雲端架構設計，包含 IaaS、PaaS、容器化部署策略。'
+          description: '規劃 AWS、Azure 與容器化部署路線。'
         },
         {
           name: '系統整合方案',
           icon: 'sync_alt',
-          description: '設計跨系統整合方案，包含 API 設計、訊息佇列、資料同步機制。'
+          description: '處理 API、訊息流與資料同步整合。'
         }
       ],
-      offeringsTitle: '服務內容',
+      offeringsTitle: '介入內容',
       benefits: [
-        '13 年實戰經驗，經手過物聯網、車聯網、電商等高併發場景',
-        '深入理解業務需求，提供符合企業發展的技術方案',
-        '注重系統可維護性，避免技術債務累積',
-        '提供完整技術文件與架構圖，確保知識傳承'
+        '架構討論不脫離現況、時程與風險',
+        '擅長高併發與跨系統整合判斷',
+        '把抽象決策變成可實作方案'
       ],
-      benefitsTitle: '為什麼選擇我',
+      benefitsTitle: '你會得到的價值',
       cases: [
-        '車聯網/物聯網：納智捷車聯網平台、納智捷充電樁系統、中油物聯網能源管理、萬磁王智慧停車',
-        '電商平台：宜得利電商平台、康是美 EC 3.0',
-        'SSO 會員整合：統一集團多品牌會員系統',
-        '政府標案：國防部、高公局、資電指揮部'
+        '車聯網 / 物聯網',
+        '電商平台',
+        'SSO 會員整合',
+        '政府標案'
       ],
-      casesTitle: '實際案例'
+      casesTitle: '代表場景'
     },
     {
       title: '程式開發',
-      description: '提供高品質的全端軟體開發服務，從網站到手機應用程式，協助實現您的產品願景。',
+      description: '直接補進最關鍵的模組、流程與整合點。',
       icon: 'code',
       color: 'secondary',
       offerings: [
         {
           name: '全端網站開發',
           icon: 'web',
-          description: '使用 Vue.js、React、Java、C# 等技術，開發現代化、高效能的網站應用程式。'
+          description: '以前後端整合完成核心功能。'
         },
         {
           name: '手機 APP 開發',
           icon: 'phone_iphone',
-          description: '開發 iOS 與 Flutter 跨平台手機應用程式，提供原生或跨平台解決方案。'
+          description: '支援 iOS 與 Flutter 跨平台開發。'
         },
         {
           name: '系統整合開發',
           icon: 'sync_alt',
-          description: '客製化系統開發與整合，包含 API 串接、第三方服務整合、資料交換。'
+          description: '處理 API 串接、第三方整合與資料交換。'
         },
         {
           name: '程式碼審查',
           icon: 'verified',
-          description: '程式碼品質審查與優化建議，提升程式碼可讀性、效能與安全性。'
+          description: '找出品質、效能與維護風險。'
         }
       ],
-      offeringsTitle: '服務內容',
+      offeringsTitle: '可直接支援的項目',
       benefits: [
-        '13 年開發經驗，精通多種程式語言與框架',
-        '注重程式碼品質與可維護性',
-        '遵循業界最佳實踐與設計模式',
-        '提供完整技術文件與交接'
+        '可從前端一路做到後端與整合流程',
+        '兼顧交付速度、品質與穩定性',
+        '能快速切入混合技術環境'
       ],
-      benefitsTitle: '為什麼選擇我',
+      benefitsTitle: '合作時的優勢',
       cases: [
-        '車聯網/物聯網：納智捷車聯網、納智捷充電樁、中油物聯網、萬磁王停車系統',
-        '電商平台：宜得利電商、康是美 EC 3.0、7-11 線上購物',
-        'SSO 會員系統：統一集團會員整合',
-        '政府標案：多個政府單位系統開發'
+        '車聯網 / 物聯網',
+        '電商平台',
+        'SSO 會員系統',
+        '政府系統開發'
       ],
-      casesTitle: '實際案例'
+      casesTitle: '實際落地類型'
     },
     {
       title: '團隊管理與培訓',
-      description: '協助企業建立高效的技術團隊，提供人才培育與管理經驗分享。',
+      description: '當團隊變大、協作變複雜時，重新拉回標準與節奏。',
       icon: 'groups',
       color: 'accent',
       offerings: [
         {
           name: '團隊組建與管理',
           icon: 'group_add',
-          description: '協助規劃團隊結構、帶領技術團隊、建立開發流程與評估標準。'
+          description: '建立團隊結構、流程與管理節點。'
         },
         {
           name: '人才培養',
           icon: 'school',
-          description: '提供技術培訓、職涯輔導、技能提升，協助工程師成長與發展。'
+          description: '做培訓、帶教與職涯成長規劃。'
         },
         {
           name: '開發規範建立',
           icon: 'rule',
-          description: '建立程式碼規範、文件標準、Git 流程，確保團隊協作順暢。'
+          description: '建立程式碼、文件與 Git 規範。'
         },
         {
           name: '技術文化塑造',
           icon: 'psychology',
-          description: '協助建立學習型組織，鼓勵技術分享、知識傳承與持續改進。'
+          description: '讓分享、傳承與持續改進變成日常。'
         }
       ],
-      offeringsTitle: '服務內容',
+      offeringsTitle: '可協助的管理面向',
       benefits: [
-        '曾帶領 40 人技術團隊，豐富的管理實戰經驗',
-        '了解不同階段工程師的需求與成長路徑',
-        '重視團隊文化與成員發展，激勵團隊士氣',
-        '提供實戰經驗分享，協助團隊提升效能'
+        '帶過 40 人技術團隊，理解真實摩擦點',
+        '能平衡主管視角、工程需求與交付壓力',
+        '把管理經驗轉成可落地方法'
       ],
-      benefitsTitle: '為什麼選擇我',
+      benefitsTitle: '適合介入的原因',
       cases: [
-        '軟體公司技術部門管理',
-        '車聯網/物聯網/電商多個大型專案團隊管理',
-        '工程師職涯發展輔導與技術培訓',
-        '開發流程與技術規範建立'
+        '技術部門管理',
+        '大型專案團隊帶領',
+        '工程師培訓與職涯輔導',
+        '開發流程與規範建立'
       ],
-      casesTitle: '實際案例'
+      casesTitle: '常見合作情境'
     }
     ],
     process: {
-      title: '合作流程',
+      title: '合作方式與節奏',
       steps: [
         {
-          title: '需求溝通',
-          description: '深入了解您的專案需求、目標與挑戰，評估時程與資源。'
+          title: '先釐清真正要解的問題',
+          description: '先把目標、現況與限制講清楚。'
         },
         {
-          title: '方案評估',
-          description: '分析現況，提供多種技術方案，包含優缺點分析與成本評估。'
+          title: '評估可行方向與風險',
+          description: '把方案、取捨與風險一次攤開。'
         },
         {
-          title: '執行計畫',
-          description: '確定合作方式，制定詳細的執行計畫與里程碑。'
+          title: '定義合作切入點',
+          description: '確認角色、範圍與里程碑。'
         },
         {
-          title: '專案實施',
-          description: '按計畫執行，定期回報進度，持續溝通與調整。'
-        },
-        {
-          title: '成果交付',
-          description: '交付完整的技術文件、程式碼或諮詢報告，確保知識傳承。'
-        },
-        {
-          title: '後續支援',
-          description: '提供一定期間的技術支援，協助解決實施後的問題。'
+          title: '直接推動執行',
+          description: '推進執行、同步修正，直到能穩定落地。'
         }
       ]
     },
     cta: {
-      title: '準備開始您的專案？',
-      description: '無論是技術請詢、系統開發或團隊建置，我都能提供專業協助',
-      or: '或是直接 Email 聯繫',
-      email_button: 'Email 聯絡'
+      title: '如果你現在正卡在技術或交付問題上',
+      description: '如果你需要更清楚的方向，或更穩的執行支援，我可以直接幫你判斷下一步。',
+      or: '也可以直接來信說明目前狀況',
+      email_button: '直接聯絡我'
     }
   }
 }

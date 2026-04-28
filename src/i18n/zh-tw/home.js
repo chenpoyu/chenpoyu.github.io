@@ -1,10 +1,51 @@
 export default {
   hero: {
+    eyebrow: '技術顧問 / 架構策略 / 關鍵交付',
     title: 'Poyu Chen 陳柏妤',
-    subtitle: '資深全端架構師 / 技術團隊領導者',
-    description: '13+ 年開發經驗 • 車聯網/物聯網專家 • 電商平台與 SSO 架構師 • 團隊領導',
-    cta_primary: '聯絡我',
-    cta_secondary: '了解更多',
+    subtitle: '把複雜產品、跨系統整合與團隊交付，整理成能持續成長的技術系統',
+    description: '我協助企業與產品團隊處理架構重整、系統整合、品質失控與交付卡關等高複雜度問題，讓技術決策真正支撐業務成長。',
+    note: '不是只把功能做出來，而是把方向、結構、節奏與品質一起校準，讓團隊能穩定往前。',
+    cta_primary: '預約顧問對談',
+    cta_secondary: '了解我的方法',
+  },
+  curation: {
+    badge: 'Editorial Positioning',
+    title: '你需要的，是有判斷力的技術顧問',
+    subtitle: '當需求模糊、系統變重、團隊速度下降時，真正缺少的通常不是人力，而是清楚的技術方向。',
+    note: '我負責把複雜情境拆開、把關鍵決策說清楚，讓架構、流程與團隊協作重新對齊。',
+    items: {
+      positioning: {
+        title: '先定義真正的問題',
+        description: '先釐清業務目標、風險來源與系統邊界，再進技術設計，避免團隊在模糊方向裡反覆重工。'
+      },
+      systems: {
+        title: '把系統做成可持續',
+        description: '不只完成功能，而是同時處理資料流、責任切分、可延展性與維運成本，讓系統越做越穩。'
+      },
+      leadership: {
+        title: '讓交付像專業作品',
+        description: '高品質來自判斷、節奏與標準一致，不只是程式碼正確，而是整體合作體驗都可信。'
+      }
+    }
+  },
+  domains: {
+    badge: 'Selected Domains',
+    title: '我最能發揮價值的三種場景',
+    subtitle: '不是列出會什麼技術，而是聚焦哪些問題類型，我能真正幫你把局面整理好。',
+    items: {
+      iot: {
+        title: '車聯網 / 物聯網系統',
+        description: '處理即時資料、設備整合與高併發場景，核心在於穩定架構、清楚責任與可長期演進。'
+      },
+      commerce: {
+        title: '電商與營運平台',
+        description: '從訂單、會員、庫存到支付與後台流程，重視的是營運效率與體驗一致性。'
+      },
+      integration: {
+        title: '會員整合與企業級協作',
+        description: '擅長梳理跨品牌帳號、權限與流程治理，讓複雜系統回到可管理、可擴充的狀態。'
+      }
+    }
   },
   profile_cta: {
     title: '想更深入了解我的專業背景？',
@@ -47,40 +88,66 @@ export default {
     },
   },
   services: {
-    title: '專業服務',
-    subtitle: '提供全方位技術解決方案，從架構設計到實施部署一條龍服務',
+    badge: 'Signature Services',
+    title: '我提供的合作方式',
+    subtitle: '從架構策略、關鍵開發到團隊帶領，介入的不只是執行，而是幫你把整體技術局面拉回正軌。',
     items: {
       architecture: {
-        title: '系統架構設計',
-        description: '提供企業級系統架構規劃與技術選型',
+        title: '架構規劃與技術判斷',
+        description: '針對現況與成長目標，建立更穩定、更清楚、更能支撐未來的技術結構。',
         features: [
-          '微服務架構設計與實施',
-          '高併發系統架構優化',
-          '雲原生架構規劃 (AWS/Azure)',
-          '資料庫架構設計與調優'
+          '系統重構方向與技術選型',
+          '高流量與高可用性架構調整',
+          '雲端與部署策略規劃',
+          '資料與服務邊界重整'
         ]
       },
       consulting: {
-        title: '全端開發',
-        description: '從前端到後端，從網頁到手機 APP 的全棧開發能力',
+        title: '關鍵開發與整合落地',
+        description: '在真正重要的功能、流程與整合點上直接下場，補上團隊最需要的技術力量。',
         features: [
-          'Web 應用開發 (Vue.js / React)',
-          '後端服務開發 (Java / .NET Core / PHP)',
-          '手機 APP 開發 (iOS / Flutter)',
-          'RESTful API 設計與整合'
+          '前後端關鍵模組實作',
+          '跨系統 API 與流程整合',
+          '效能、穩定性與可維護性優化',
+          '從需求到上線的實戰支援'
         ]
       },
       team_building: {
-        title: '團隊管理與培訓',
-        description: '帶領技術團隊，培養人才，提升整體技術實力',
+        title: '技術帶領與團隊校準',
+        description: '幫團隊建立更清楚的技術標準、合作節奏與交付方法，而不是只靠個人硬撐。',
         features: [
-          '專案管理與敏捷實踐',
-          '技術指導與培訓',
-          'Code Review 與品質把關',
-          '工程文化建設'
+          '技術決策與方案評估',
+          'Code Review 與品質基準建立',
+          '工程流程與角色分工調整',
+          '主管與技術團隊之間的溝通橋接'
         ]
       },
     },
+  },
+  pathways: {
+    badge: 'Explore Further',
+    title: '從三個角度快速判斷，我能如何幫上忙',
+    subtitle: '如果你在找合作對象，這裡可以快速看到我的背景、服務方式，以及我如何把 AI 放進真實開發流程。',
+    items: {
+      about: {
+        tag: 'Profile',
+        title: '關於我',
+        description: '看完整經歷、技術能力與代表專案，了解我是如何從開發走到架構與團隊帶領。',
+        button: '查看背景'
+      },
+      services: {
+        tag: 'Services',
+        title: '服務項目',
+        description: '了解我如何介入架構規劃、關鍵開發、團隊校準與顧問型技術合作。',
+        button: '查看合作方式'
+      },
+      workflow: {
+        tag: 'AI Workflow',
+        title: 'AI 開發工作流',
+        description: '看我如何把 AI 放進真實專案流程，而不是停留在 demo 或單次產碼。',
+        button: '查看工作流'
+      }
+    }
   },
   tech: {
     title: '技術棧',

@@ -1,413 +1,488 @@
 <template>
-  <q-page class="tech-architecture-page">
-    <!-- Hero Section -->
+  <q-page class="tech-architecture-page" :class="pageClasses">
     <section class="hero-section">
       <div class="container">
-        <h1 class="page-title">{{ $t('techarch.hero.title') }}</h1>
-        <p class="page-subtitle">{{ $t('techarch.hero.subtitle') }}</p>
+        <div class="hero-stage">
+          <div class="hero-copy">
+            <p class="hero-eyebrow">{{ $t('techarch.hero.eyebrow') }}</p>
+            <div class="hero-badge-row">
+              <span
+                v-for="badge in heroBadges"
+                :key="badge"
+                class="hero-badge"
+              >
+                {{ badge }}
+              </span>
+            </div>
+            <h1 class="page-title">
+              <span
+                v-for="line in heroTitleLines"
+                :key="line"
+                class="title-line"
+              >
+                {{ line }}
+              </span>
+            </h1>
+            <p class="page-subtitle">{{ $t('techarch.hero.subtitle') }}</p>
+            <p class="hero-description">{{ $t('techarch.hero.description') }}</p>
+            <p class="hero-note">{{ $t('techarch.hero.note') }}</p>
+
+            <div class="hero-proof-grid">
+              <article
+                v-for="item in heroProof"
+                :key="item.title"
+                class="hero-proof-card"
+              >
+                <p class="hero-proof-card__label">{{ item.title }}</p>
+                <p class="hero-proof-card__text">{{ item.description }}</p>
+              </article>
+            </div>
+
+            <div class="hero-actions">
+              <q-btn
+                unelevated
+                color="accent"
+                no-caps
+                :label="$t('techarch.hero.primaryCta')"
+                to="/work"
+              />
+              <q-btn
+                outline
+                color="primary"
+                no-caps
+                :label="$t('techarch.hero.secondaryCta')"
+                to="/ai-workflow"
+              />
+            </div>
+          </div>
+
+          <div class="hero-domain-board">
+            <article class="hero-domain-board__lead">
+              <p class="hero-domain-board__eyebrow">{{ $t('techarch.hero.panelEyebrow') }}</p>
+              <h2 class="hero-domain-board__title">{{ $t('techarch.hero.panelTitle') }}</h2>
+              <p class="hero-domain-board__note">{{ $t('techarch.hero.panelNote') }}</p>
+              <ul class="hero-domain-board__list">
+                <li v-for="point in heroPanelPoints" :key="point">{{ point }}</li>
+              </ul>
+            </article>
+
+            <div class="hero-domain-grid">
+              <article
+                v-for="(item, index) in cases"
+                :key="`${item.key}-hero`"
+                class="hero-case-chip"
+              >
+                <span class="hero-case-chip__index">{{ String(index + 1).padStart(2, '0') }}</span>
+                <div class="hero-case-chip__body">
+                  <p class="hero-case-chip__kicker">{{ item.kicker }}</p>
+                  <h2 class="hero-case-chip__title">{{ item.title }}</h2>
+                  <p class="hero-case-chip__fit">{{ item.heroFit }}</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Dev Tools Section -->
-    <section class="devtools-section">
+    <section class="positioning-section section-shell">
       <div class="container">
-        <div class="devtools-card" @click="openDevTools">
-          <div class="devtools-content">
-            <div class="devtools-icon">
-              <q-icon name="construction" size="48px" />
+        <div class="section-heading centered">
+          <p class="section-eyebrow">{{ $t('techarch.positioning.eyebrow') }}</p>
+          <h2 class="section-title section-title--positioning">
+            <span
+              v-for="line in positioningTitleLines"
+              :key="line"
+              class="title-line"
+            >
+              {{ line }}
+            </span>
+          </h2>
+          <p class="section-subtitle">{{ $t('techarch.positioning.subtitle') }}</p>
+        </div>
+
+        <div class="positioning-grid">
+          <article
+            v-for="(item, index) in positioningItems"
+            :key="item.title"
+            class="positioning-card"
+          >
+            <span class="positioning-card__index">{{ String(index + 1).padStart(2, '0') }}</span>
+            <h3 class="positioning-card__title">{{ item.title }}</h3>
+            <p class="positioning-card__description">{{ item.description }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cases-section section-shell">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="section-eyebrow">{{ $t('techarch.casesIntro.eyebrow') }}</p>
+          <h2 class="section-title section-title--cases">
+            <span
+              v-for="line in casesIntroTitleLines"
+              :key="line"
+              class="title-line"
+            >
+              {{ line }}
+            </span>
+          </h2>
+          <p class="section-subtitle">{{ $t('techarch.casesIntro.subtitle') }}</p>
+        </div>
+
+        <article
+          v-for="(item, index) in cases"
+          :key="item.key"
+          class="case-card"
+        >
+          <div class="case-card__header">
+            <div class="case-card__header-copy">
+              <span class="case-card__kicker">{{ item.kicker }}</span>
+              <h3 class="case-card__title">{{ item.title }}</h3>
+              <p class="case-card__summary">{{ item.summary }}</p>
             </div>
-            <div class="devtools-text">
-              <h3 class="devtools-title">{{ $t('techarch.devtools.title') }}</h3>
-              <p class="devtools-description">{{ $t('techarch.devtools.description') }}</p>
+            <div class="case-card__header-index">{{ String(index + 1).padStart(2, '0') }}</div>
+          </div>
+
+          <div class="case-card__diagram-panel">
+            <div class="diagram-meta">
+              <h4 class="diagram-meta__title">{{ item.diagramTitle }}</h4>
+              <p class="diagram-meta__caption">{{ item.diagramCaption }}</p>
+            </div>
+
+            <div class="diagram-stage">
+              <div class="diagram-canvas" v-html="renderedDiagrams[item.key] || ''"></div>
             </div>
           </div>
-          <q-btn
-            :label="$t('techarch.devtools.button')"
+
+          <div class="case-card__details-grid">
+            <div class="case-card__content-main">
+              <div class="case-block">
+                <h4 class="case-block__title">{{ item.contextTitle }}</h4>
+                <p class="case-block__text">{{ item.context }}</p>
+              </div>
+
+              <div class="case-block">
+                <h4 class="case-block__title">{{ item.roleTitle }}</h4>
+                <p class="case-block__text">{{ item.role }}</p>
+              </div>
+
+              <div class="case-block">
+                <h4 class="case-block__title">{{ item.stackTitle }}</h4>
+                <div class="stack-chips">
+                  <q-chip
+                    v-for="stackItem in item.stack"
+                    :key="stackItem"
+                    outline
+                    color="primary"
+                    :label="stackItem"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="case-card__content-side">
+              <div class="case-lists-grid case-lists-grid--stacked">
+                <div class="case-block">
+                  <h4 class="case-block__title">{{ item.decisionsTitle }}</h4>
+                  <ul class="case-list">
+                    <li v-for="decision in item.decisions" :key="decision">
+                      <q-icon name="north_east" size="16px" color="accent" />
+                      <span>{{ decision }}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="case-block">
+                  <h4 class="case-block__title">{{ item.outcomesTitle }}</h4>
+                  <ul class="case-list case-list--positive">
+                    <li v-for="outcome in item.outcomes" :key="outcome">
+                      <q-icon name="check_circle" size="16px" color="positive" />
+                      <span>{{ outcome }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="capability-section section-shell">
+      <div class="container">
+        <div class="section-heading centered">
+          <p class="section-eyebrow">{{ $t('techarch.capability.eyebrow') }}</p>
+          <h2 class="section-title section-title--capability">
+            <span
+              v-for="line in capabilityTitleLines"
+              :key="line"
+              class="title-line"
+            >
+              {{ line }}
+            </span>
+          </h2>
+          <p class="section-subtitle">{{ $t('techarch.capability.subtitle') }}</p>
+        </div>
+
+        <div class="capability-grid">
+          <q-card
+            v-for="item in capabilityItems"
+            :key="item.title"
             flat
-            dense
-            icon-right="arrow_forward"
-            class="devtools-button"
+            class="capability-card"
+          >
+            <q-card-section>
+              <h3 class="capability-card__title">{{ item.title }}</h3>
+              <p class="capability-card__description">{{ item.description }}</p>
+            </q-card-section>
+          </q-card>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section">
+      <div class="container closing-shell">
+        <div class="closing-copy">
+          <p class="section-eyebrow section-eyebrow--light">{{ $t('techarch.closing.eyebrow') }}</p>
+          <h2 class="closing-title">{{ $t('techarch.closing.title') }}</h2>
+          <p class="closing-description">{{ $t('techarch.closing.description') }}</p>
+        </div>
+
+        <div class="closing-actions">
+          <q-btn
+            unelevated
+            color="accent"
+            no-caps
+            :label="$t('techarch.closing.primaryCta')"
+            to="/work"
+          />
+          <q-btn
+            outline
+            color="white"
+            no-caps
+            :label="$t('techarch.closing.secondaryCta')"
+            @click="sendEmail"
           />
         </div>
-      </div>
-    </section>
-
-    <!-- Architecture Showcases -->
-    <section class="architecture-section">
-      <div class="container">
-        <!-- Microservices Architecture -->
-        <div class="architecture-card">
-          <h2 class="architecture-title">
-            <q-icon name="hub" color="primary" size="32px" class="q-mr-sm" />
-            {{ $t('techarch.microservices.title') }}
-          </h2>
-          <p class="architecture-description">{{ $t('techarch.microservices.description') }}</p>
-
-          <div class="mermaid-wrapper">
-            <pre class="mermaid">
-graph TB
-    subgraph "Client Layer"
-        Web[Web Application]
-        Mobile[Mobile App]
-        Admin[Admin Portal]
-    end
-
-    subgraph "API Gateway"
-        Gateway[API Gateway<br/>Azure API Management]
-    end
-
-    subgraph "App Services Layer - Azure"
-        App1[App Service 1<br/>User Service]
-        App2[App Service 2<br/>Order Service]
-        App3[App Service 3<br/>Product Service]
-        App4[App Service 4<br/>Payment Service]
-    end
-
-    subgraph "Cache Layer"
-        Redis[Azure Redis Cache<br/>Session & Data Cache]
-    end
-
-    subgraph "Database Layer"
-        SQL1[(SQL Server 1<br/>User DB)]
-        SQL2[(SQL Server 2<br/>Order DB)]
-        SQL3[(SQL Server 3<br/>Product DB)]
-    end
-
-    Web --> Gateway
-    Mobile --> Gateway
-    Admin --> Gateway
-
-    Gateway --> App1
-    Gateway --> App2
-    Gateway --> App3
-    Gateway --> App4
-
-    App1 --> Redis
-    App2 --> Redis
-    App3 --> Redis
-    App4 --> Redis
-
-    App1 --> SQL1
-    App2 --> SQL2
-    App3 --> SQL3
-    App4 --> SQL2
-
-    style Gateway fill:#5E81AC,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style Redis fill:#BF616A,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style SQL1 fill:#88C0D0,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style SQL2 fill:#88C0D0,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style SQL3 fill:#88C0D0,stroke:#4C566A,stroke-width:2px,color:#2E3440
-            </pre>
-          </div>
-
-          <div class="tech-highlights">
-            <h3 class="highlights-title">{{ $t('techarch.highlights') }}</h3>
-            <ul class="highlights-list">
-              <li v-for="(highlight, idx) in microservicesHighlights" :key="idx">
-                <q-icon name="check_circle" color="positive" />
-                <span>{{ highlight }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- IoT Architecture -->
-        <div class="architecture-card">
-          <h2 class="architecture-title">
-            <q-icon name="sensors" color="secondary" size="32px" class="q-mr-sm" />
-            {{ $t('techarch.iot.title') }}
-          </h2>
-          <p class="architecture-description">{{ $t('techarch.iot.description') }}</p>
-
-          <div class="mermaid-wrapper">
-            <pre class="mermaid">
-graph TB
-    subgraph "IoT Devices"
-        Device1[IoT Sensors<br/>Temperature/Humidity]
-        Device2[Smart Devices<br/>Controllers]
-        Device3[Monitoring Devices<br/>Status Trackers]
-    end
-
-    subgraph "AWS API Gateway"
-        APIGateway[API Gateway<br/>RESTful APIs]
-    end
-
-    subgraph "AWS Lambda Functions"
-        Lambda1[Lambda Function 1<br/>Data Validation]
-        Lambda2[Lambda Function 2<br/>Data Processing]
-        Lambda3[Lambda Function 3<br/>Alert Handler]
-    end
-
-    subgraph "AWS Step Functions"
-        StepFunc[Step Functions<br/>Workflow Orchestration]
-    end
-
-    subgraph "Cache & Storage"
-        Redis[Redis Cache<br/>Real-time Data]
-        S3[S3 Storage<br/>Historical Data]
-    end
-
-    subgraph "Data Layer"
-        PostgreSQL[(PostgreSQL<br/>Device State & Business Data)]
-    end
-
-    Device1 --> APIGateway
-    Device2 --> APIGateway
-    Device3 --> APIGateway
-
-    APIGateway --> Lambda1
-    Lambda1 --> Lambda2
-    Lambda2 --> StepFunc
-
-    StepFunc --> Lambda3
-    StepFunc --> Redis
-    StepFunc --> PostgreSQL
-
-    Lambda2 --> Redis
-    Lambda3 --> PostgreSQL
-
-    StepFunc --> S3
-
-    style APIGateway fill:#5E81AC,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style StepFunc fill:#B48EAD,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style Redis fill:#BF616A,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style Lambda1 fill:#A3BE8C,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style Lambda2 fill:#A3BE8C,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style Lambda3 fill:#A3BE8C,stroke:#4C566A,stroke-width:2px,color:#2E3440
-            </pre>
-          </div>
-
-          <div class="tech-highlights">
-            <h3 class="highlights-title">{{ $t('techarch.highlights') }}</h3>
-            <ul class="highlights-list">
-              <li v-for="(highlight, idx) in iotHighlights" :key="idx">
-                <q-icon name="check_circle" color="positive" />
-                <span>{{ highlight }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- SSO Architecture -->
-        <div class="architecture-card">
-          <h2 class="architecture-title">
-            <q-icon name="lock" color="accent" size="32px" class="q-mr-sm" />
-            {{ $t('techarch.sso.title') }}
-          </h2>
-          <p class="architecture-description">{{ $t('techarch.sso.description') }}</p>
-
-          <div class="mermaid-wrapper">
-            <pre class="mermaid">
-sequenceDiagram
-    participant User as User Browser
-    participant App as Business App
-    participant SSO as SSO Server
-    participant Auth as Auth Service
-    participant DB as User Database
-
-    User->>App: 1. Access Protected Resource
-    App->>App: 2. Check Session
-    App->>SSO: 3. Redirect to SSO Login
-
-    SSO->>User: 4. Display Login Page
-    User->>SSO: 5. Submit Credentials
-
-    SSO->>Auth: 6. Validate Credentials
-    Auth->>DB: 7. Query User Info
-    DB->>Auth: 8. Return User Data
-    Auth->>SSO: 9. Authentication Result
-
-    SSO->>SSO: 10. Generate Token (JWT)
-    SSO->>User: 11. Set SSO Cookie
-    SSO->>App: 12. Redirect with Token
-
-    App->>Auth: 13. Verify Token
-    Auth->>App: 14. Token Valid
-
-    App->>App: 15. Create Session
-    App->>User: 16. Grant Access
-
-    Note over User,DB: Single sign-on complete / Access granted to all integrated apps
-
-    User->>App: 17. Access Another App
-    App->>SSO: 18. Check SSO Cookie
-    SSO->>App: 19. Return Valid Token
-    App->>User: 20. Direct Access (No Login)
-            </pre>
-          </div>
-
-          <div class="tech-highlights">
-            <h3 class="highlights-title">{{ $t('techarch.highlights') }}</h3>
-            <ul class="highlights-list">
-              <li v-for="(highlight, idx) in ssoHighlights" :key="idx">
-                <q-icon name="check_circle" color="positive" />
-                <span>{{ highlight }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- High Concurrency System -->
-        <div class="architecture-card">
-          <h2 class="architecture-title">
-            <q-icon name="speed" color="warning" size="32px" class="q-mr-sm" />
-            {{ $t('techarch.highconcurrency.title') }}
-          </h2>
-          <p class="architecture-description">{{ $t('techarch.highconcurrency.description') }}</p>
-
-          <div class="mermaid-wrapper">
-            <pre class="mermaid">
-graph TB
-    subgraph "CDN Layer"
-        CDN[Azure CDN<br/>Static Resources]
-    end
-
-    subgraph "Load Balancer"
-        LB[Load Balancer<br/>Traffic Distribution]
-    end
-
-    subgraph "API Gateway"
-        Gateway[API Gateway<br/>Rate Limiting & Auth]
-    end
-
-    subgraph "Cache Layer"
-        Redis[Redis Cluster<br/>Distributed Cache]
-    end
-
-    subgraph "App Service Layer"
-        App1[App Service 1]
-        App2[App Service 2]
-        App3[App Service 3]
-        App4[App Service 4]
-    end
-
-    subgraph "Message Queue"
-        MQ[Message Queue<br/>Redis Queue]
-        Worker1[Worker 1]
-        Worker2[Worker 2]
-    end
-
-    subgraph "Database Layer"
-        Master[(SQL Server Master<br/>Write Operations)]
-        Slave1[(SQL Server Slave 1<br/>Read Operations)]
-        Slave2[(SQL Server Slave 2<br/>Read Operations)]
-    end
-
-    User[High Traffic Users<br/>100k+ concurrent]
-
-    User --> CDN
-    User --> LB
-
-    LB --> Gateway
-    Gateway --> App1
-    Gateway --> App2
-    Gateway --> App3
-    Gateway --> App4
-
-    App1 --> Redis
-    App2 --> Redis
-    App3 --> Redis
-    App4 --> Redis
-
-    App1 --> Master
-    App2 --> Master
-    App3 --> Slave1
-    App4 --> Slave2
-
-    Master --> Slave1
-    Master --> Slave2
-
-    App1 --> MQ
-    App2 --> MQ
-    MQ --> Worker1
-    MQ --> Worker2
-
-    Worker1 --> Master
-    Worker2 --> Master
-
-    style CDN fill:#8FBCBB,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style Gateway fill:#5E81AC,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style LB fill:#B48EAD,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style Redis fill:#BF616A,stroke:#4C566A,stroke-width:2px,color:#ECEFF4
-    style Master fill:#88C0D0,stroke:#4C566A,stroke-width:2px,color:#2E3440
-    style MQ fill:#EBCB8B,stroke:#4C566A,stroke-width:2px,color:#2E3440
-            </pre>
-          </div>
-
-          <div class="tech-highlights">
-            <h3 class="highlights-title">{{ $t('techarch.highlights') }}</h3>
-            <ul class="highlights-list">
-              <li v-for="(highlight, idx) in highconcurrencyHighlights" :key="idx">
-                <q-icon name="check_circle" color="positive" />
-                <span>{{ highlight }}</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
   </q-page>
 </template>
 
 <script>
-import { defineComponent, onMounted, computed } from 'vue'
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useQuasar } from 'quasar'
 import mermaid from 'mermaid'
+
+/**
+ * @typedef {{ title: string, description: string }} ContentItem
+ * @typedef {{
+ *   kicker: string,
+ *   title: string,
+ *   heroFit: string,
+ *   summary: string,
+ *   contextTitle: string,
+ *   context: string,
+ *   roleTitle: string,
+ *   role: string,
+ *   decisionsTitle: string,
+ *   decisions: string[],
+ *   outcomesTitle: string,
+ *   outcomes: string[],
+ *   stackTitle: string,
+ *   stack: string[],
+ *   diagramTitle: string,
+ *   diagramCaption: string
+ * }} CaseContent
+ * @typedef {CaseContent & { key: string, diagram: string }} CaseItem
+ */
+
+const caseOrder = ['iotPlatform', 'memberIdentity', 'commerceScale']
+
+const caseDiagrams = {
+  iotPlatform: `graph TB
+    Device[Vehicle / IoT Device] --> Gateway[API Gateway]
+    Gateway --> Api[Backend API]
+    Api --> StepFn[AWS Step Functions]
+    Api --> Redis[Redis]
+    StepFn --> Redis
+    StepFn --> Postgres[(PostgreSQL)]
+    StepFn --> S3[(AWS S3)]
+    Ops[Operation Console] --> Gateway
+    Ops --> Postgres`,
+  memberIdentity: `sequenceDiagram
+    participant Brand as Brand App
+    participant Gateway as API Gateway
+    participant Redis as Redis
+    participant Member as Member API
+    participant DB as Member DB
+
+    Brand->>Gateway: Access protected page
+    Gateway->>Gateway: Validate JWT
+    Gateway->>Redis: Check token / session state
+    Redis-->>Gateway: Session state
+    Gateway->>Member: Request member profile
+    Member->>DB: Query member data
+    DB-->>Member: Member identity and roles
+    Member-->>Gateway: Member response
+    Gateway-->>Brand: Authorized response`,
+  commerceScale: `graph LR
+    Client[Web / App Users] --> CDN[CDN]
+    CDN --> Gateway[API Gateway]
+    Gateway --> Api[Backend API]
+    Api --> Redis[Redis]
+    Api --> Primary[(PostgreSQL)]
+    Api --> Job[Scheduled Job / Batch]
+    Job --> Primary`
+}
 
 export default defineComponent({
   name: 'TechArchitecture',
 
   setup() {
-    const { tm } = useI18n()
+    const $q = useQuasar()
+    const { tm, locale } = useI18n()
+    const renderedDiagrams = ref({})
 
-    const microservicesHighlights = computed(() => tm('techarch.microservices.highlights'))
-    const iotHighlights = computed(() => tm('techarch.iot.highlights'))
-    const ssoHighlights = computed(() => tm('techarch.sso.highlights'))
-    const highconcurrencyHighlights = computed(() => tm('techarch.highconcurrency.highlights'))
+    const normalizeLines = (value, fallback) => {
+      if (Array.isArray(value) && value.length > 0) {
+        return value
+      }
 
-    onMounted(() => {
-      // Initialize Mermaid
+      return [fallback]
+    }
+
+    const heroBadges = computed(() => /** @type {string[]} */ (tm('techarch.hero.badges')))
+    const heroProof = computed(() => /** @type {{ title: string, description: string }[]} */ (tm('techarch.hero.proof')))
+    const heroPanelPoints = computed(() => /** @type {string[]} */ (tm('techarch.hero.panelPoints')))
+    const isEnglishLocale = computed(() => locale.value === 'en-us')
+    const isChineseLocale = computed(() => locale.value === 'zh-tw')
+    const pageClasses = computed(() => ({
+      'tech-architecture-page--dark': $q.dark.isActive,
+      'tech-architecture-page--en': isEnglishLocale.value,
+      'tech-architecture-page--zh': isChineseLocale.value
+    }))
+    const heroTitleLines = computed(() => normalizeLines(tm('techarch.hero.titleLines'), tm('techarch.hero.title')))
+    const positioningTitleLines = computed(() => normalizeLines(tm('techarch.positioning.titleLines'), tm('techarch.positioning.title')))
+    const casesIntroTitleLines = computed(() => normalizeLines(tm('techarch.casesIntro.titleLines'), tm('techarch.casesIntro.title')))
+    const capabilityTitleLines = computed(() => normalizeLines(tm('techarch.capability.titleLines'), tm('techarch.capability.title')))
+    const positioningItems = computed(
+      /** @returns {ContentItem[]} */
+      () => /** @type {ContentItem[]} */ (tm('techarch.positioning.items'))
+    )
+    const capabilityItems = computed(
+      /** @returns {ContentItem[]} */
+      () => /** @type {ContentItem[]} */ (tm('techarch.capability.items'))
+    )
+    const cases = computed(
+      /** @returns {CaseItem[]} */
+      () => {
+      const source = /** @type {Record<string, CaseContent>} */ (tm('techarch.cases'))
+
+      return caseOrder.map((key) => ({
+        key,
+        diagram: caseDiagrams[key],
+        ...source[key]
+      }))
+      }
+    )
+
+    const renderMermaid = async () => {
+      const isDark = $q.dark.isActive
+
       mermaid.initialize({
         startOnLoad: false,
-        theme: 'default',
+        theme: 'base',
         securityLevel: 'loose',
+        deterministicIds: false,
+        themeVariables: isDark
+          ? {
+              background: '#0f1c2c',
+              primaryColor: '#15324d',
+              primaryTextColor: '#f3ede4',
+              primaryBorderColor: '#7f97b2',
+              lineColor: '#d2dbe5',
+              secondaryColor: '#1d2d40',
+              tertiaryColor: '#132435',
+              mainBkg: '#15324d',
+              textColor: '#f3ede4',
+              fontFamily: 'Manrope, sans-serif'
+            }
+          : {
+              background: '#f5efe6',
+              primaryColor: '#dce5ee',
+              primaryTextColor: '#132235',
+              primaryBorderColor: '#4f6780',
+              lineColor: '#40586f',
+              secondaryColor: '#eef3f8',
+              tertiaryColor: '#f8fafc',
+              mainBkg: '#dce5ee',
+              textColor: '#132235',
+              fontFamily: 'Manrope, sans-serif'
+            },
         flowchart: {
           useMaxWidth: true,
           htmlLabels: true,
           curve: 'basis'
         },
         sequence: {
-          diagramMarginX: 50,
-          diagramMarginY: 10,
-          actorMargin: 50,
-          width: 150,
-          height: 65,
-          boxMargin: 10,
+          diagramMarginX: 30,
+          diagramMarginY: 12,
+          actorMargin: 44,
+          width: 180,
+          height: 60,
+          boxMargin: 8,
           boxTextMargin: 5,
           noteMargin: 10,
-          messageMargin: 35,
-          mirrorActors: true,
+          messageMargin: 28,
+          mirrorActors: false,
           useMaxWidth: true
         }
       })
 
-      // Wait for DOM to be ready and render all mermaid diagrams
-      setTimeout(() => {
-        mermaid.run()
-      }, 100)
+      const caseResults = await Promise.all(
+        caseOrder.map(async (key) => {
+          const result = await mermaid.render(`case-diagram-${key}-${isDark ? 'dark' : 'light'}`, caseDiagrams[key])
+          return [key, result.svg]
+        })
+      )
+
+      renderedDiagrams.value = Object.fromEntries(caseResults)
+    }
+
+    onMounted(() => {
+      renderMermaid()
     })
 
-    const openDevTools = () => {
-      window.open('https://chenpoyu.github.io/tools', '_blank')
+    watch(
+      () => $q.dark.isActive,
+      () => {
+        renderMermaid()
+      }
+    )
+
+    const sendEmail = () => {
+      window.location.href = 'mailto:chenpoyu1123@gmail.com?subject=架構案例合作諮詢'
     }
 
     return {
-      microservicesHighlights,
-      iotHighlights,
-      ssoHighlights,
-      highconcurrencyHighlights,
-      openDevTools
+      $q,
+      heroBadges,
+      heroProof,
+      heroTitleLines,
+      heroPanelPoints,
+      positioningTitleLines,
+      casesIntroTitleLines,
+      capabilityTitleLines,
+      positioningItems,
+      cases,
+      capabilityItems,
+      renderedDiagrams,
+      pageClasses,
+      sendEmail
     }
   }
 })
@@ -415,299 +490,1006 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tech-architecture-page {
-  min-height: 100vh;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at top left, rgba(163, 138, 99, 0.08), transparent 22%),
+    radial-gradient(circle at 84% 10%, rgba(54, 70, 90, 0.08), transparent 18%),
+    linear-gradient(180deg, #edf1f4 0%, #e6ebf0 48%, #eef2f5 100%);
+  color: var(--text-strong);
+}
 
-  .hero-section {
-    background: linear-gradient(135deg, #1a3a52 0%, #1a4d6d 50%, #2d5f7d 100%);
-    padding: 6rem 0 4rem;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
+.container {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 0;
+}
 
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(201, 162, 109, 0.08) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(139, 111, 71, 0.08) 0%, transparent 50%);
-      pointer-events: none;
-    }
+.section-shell {
+  padding: 3.9rem 0;
+}
 
-    .page-title {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      position: relative;
-      letter-spacing: -0.5px;
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  padding: 4.5rem 0 4rem;
+  color: var(--brand-navy);
+  background:
+    linear-gradient(180deg, rgba(247, 241, 233, 0.98) 0%, rgba(230, 237, 243, 0.96) 100%);
 
-      @media (max-width: 600px) {
-        font-size: 2rem;
-      }
-    }
-
-    .page-subtitle {
-      font-size: 1.3rem;
-      opacity: 0.95;
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-      font-weight: 300;
-      letter-spacing: 0.3px;
-
-      @media (max-width: 600px) {
-        font-size: 1.1rem;
-      }
-    }
+  &::before {
+    inset: 0;
+    border-radius: 0;
+    opacity: 1;
+    filter: none;
+    background-image:
+      linear-gradient(rgba(19, 34, 53, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(19, 34, 53, 0.05) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  .container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(10px);
+    opacity: 0.54;
   }
 
-  .devtools-section {
-    padding: 2rem 0;
-    background: transparent;
-
-    .devtools-card {
-      background: linear-gradient(135deg, #6b543f 0%, #8b6f47 50%, #a68759 100%);
-      border-radius: 12px;
-      padding: 2rem 2.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 24px rgba(107, 84, 63, 0.25), 0 2px 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-
-      &:hover {
-        transform: translateX(8px);
-        box-shadow: 0 8px 32px rgba(107, 84, 63, 0.35), 0 4px 12px rgba(0, 0, 0, 0.15);
-        border-color: rgba(255, 255, 255, 0.25);
-      }
-
-      .devtools-content {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        flex: 1;
-      }
-
-      .devtools-icon {
-        flex-shrink: 0;
-        opacity: 0.9;
-      }
-
-      .devtools-text {
-        flex: 1;
-      }
-
-      .devtools-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin: 0 0 0.5rem 0;
-        color: white;
-      }
-
-      .devtools-description {
-        font-size: 0.95rem;
-        margin: 0;
-        opacity: 0.9;
-        line-height: 1.4;
-      }
-
-      .devtools-button {
-        color: white;
-        font-weight: 500;
-        font-size: 1rem;
-        flex-shrink: 0;
-
-        &:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-      }
-
-      @media (max-width: 768px) {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.5rem;
-
-        .devtools-content {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 1rem;
-        }
-
-        .devtools-button {
-          align-self: flex-end;
-        }
-      }
-    }
-  }
-
-  .architecture-section {
-    padding: 4rem 0;
-    background: linear-gradient(to bottom, #f5f3f0 0%, #ede8e3 100%);
-
-    .architecture-card {
-      background: white;
-      border-radius: 16px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 8px 24px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.04);
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 12px 32px rgba(0, 0, 0, 0.12);
-      }
-
-      .architecture-title {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        color: #2c3e50;
-      }
-
-      .architecture-description {
-        font-size: 1.1rem;
-        color: #5a6c7d;
-        margin-bottom: 2rem;
-        line-height: 1.8;
-      }
-
-      .mermaid-wrapper {
-        background: #f5f5f5;
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        overflow-x: auto;
-        border: 2px solid #e0e0e0;
-
-        .mermaid {
-          display: flex;
-          justify-content: center;
-          min-height: 400px;
-          background: transparent;
-          border: none;
-          padding: 0;
-          margin: 0;
-          font-family: inherit;
-        }
-      }
-
-      .tech-highlights {
-        .highlights-title {
-          font-size: 1.5rem;
-          font-weight: 600;
-          margin-bottom: 1rem;
-          color: #2c3e50;
-        }
-
-        .highlights-list {
-          list-style: none;
-          padding: 0;
-
-          li {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 0.8rem;
-            font-size: 1.05rem;
-            color: #4a5568;
-
-            .q-icon {
-              margin-right: 0.8rem;
-              margin-top: 0.2rem;
-              flex-shrink: 0;
-            }
-          }
-        }
-      }
-    }
+  &::after {
+    width: 300px;
+    height: 300px;
+    top: -120px;
+    right: -60px;
+    background: rgba(168, 140, 97, 0.12);
   }
 }
 
-// Dark mode support
-body.body--dark {
-  .tech-architecture-page {
-    .hero-section {
-      background: linear-gradient(135deg, #0f1e2d 0%, #1a3a52 50%, #1a4d6d 100%);
+.hero-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.94fr) minmax(380px, 1.06fr);
+  gap: 1.9rem;
+  align-items: center;
+}
 
-      &::before {
-        background: radial-gradient(circle at 20% 50%, rgba(201, 162, 109, 0.12) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(139, 111, 71, 0.12) 0%, transparent 50%);
-      }
+.hero-copy {
+  display: grid;
+  align-content: start;
+  min-width: 0;
+  padding-right: 0.4rem;
+}
+
+.hero-eyebrow,
+.section-eyebrow {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 96, 0.9);
+}
+
+.hero-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(19, 34, 53, 0.06);
+  border: 1px solid rgba(19, 34, 53, 0.08);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--brand-navy);
+}
+
+.section-eyebrow--light {
+  color: rgba(201, 168, 96, 0.92);
+}
+
+.page-title,
+.section-title,
+.case-card__title,
+.closing-title {
+  font-family: var(--display-font);
+  word-break: keep-all;
+}
+
+.page-title {
+  margin: 0;
+  max-width: 8.8ch;
+  font-size: clamp(2.15rem, 3.6vw, 3.2rem);
+  line-height: 1.08;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+}
+
+.title-line {
+  display: block;
+}
+
+.page-subtitle {
+  max-width: 31rem;
+  margin: 1.1rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.82;
+  color: rgba(19, 34, 53, 0.78);
+}
+
+.hero-description,
+.hero-note,
+.section-subtitle,
+.positioning-card__description,
+.case-card__summary,
+.case-block__text,
+.diagram-meta__caption,
+.capability-card__description,
+.closing-description {
+  line-height: 1.9;
+}
+
+.hero-description {
+  max-width: 30rem;
+  margin: 1rem 0 0;
+  font-size: 0.93rem;
+  line-height: 1.85;
+  color: rgba(19, 34, 53, 0.76);
+}
+
+.hero-note {
+  max-width: 29rem;
+  margin: 0.8rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.82;
+  color: rgba(19, 34, 53, 0.62);
+}
+
+.hero-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-top: 1.35rem;
+}
+
+.hero-proof-card {
+  padding: 0.85rem 0.8rem 0.9rem;
+  border-radius: 18px;
+  border: 1px solid rgba(20, 40, 61, 0.08);
+  background: rgba(255, 255, 255, 0.36);
+  backdrop-filter: blur(12px);
+}
+
+.hero-proof-card__label {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 96, 0.96);
+}
+
+.hero-proof-card__text {
+  margin: 0.45rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.68;
+  color: rgba(19, 34, 53, 0.72);
+}
+
+.hero-actions,
+.closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.35rem;
+}
+
+.positioning-card,
+.case-card,
+.capability-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(16, 28, 43, 0.08);
+}
+
+.hero-domain-board__lead,
+.hero-case-chip {
+  border-radius: 28px;
+  border: 1px solid rgba(20, 40, 61, 0.1);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(14px);
+}
+
+.hero-domain-board {
+  display: grid;
+  gap: 0.8rem;
+  padding-top: 0;
+  min-width: 0;
+}
+
+.hero-domain-board__lead {
+  padding: 1.2rem 1.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(242, 246, 249, 0.76));
+}
+
+.hero-domain-board__eyebrow {
+  margin: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 96, 0.9);
+}
+
+.hero-domain-board__title {
+  margin: 0.5rem 0 0;
+  font-family: var(--body-font);
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.42;
+  color: var(--brand-navy);
+}
+
+.hero-domain-board__note {
+  margin: 0.55rem 0 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+  color: rgba(19, 34, 53, 0.72);
+}
+
+.hero-domain-board__list {
+  margin: 0.8rem 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  line-height: 1.72;
+  color: rgba(19, 34, 53, 0.72);
+}
+
+.hero-domain-board__list li + li {
+  margin-top: 0.5rem;
+}
+
+.diagram-canvas :deep(svg) {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.hero-domain-grid {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.hero-case-chip {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem;
+  padding: 0.8rem 0.9rem;
+}
+
+.hero-case-chip__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(16, 28, 43, 0.08);
+  color: var(--brand-navy);
+  font-weight: 800;
+}
+
+.hero-case-chip__kicker {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: rgba(19, 34, 53, 0.48);
+}
+
+.hero-case-chip__title {
+  margin: 0.28rem 0 0;
+  font-family: var(--body-font);
+  font-size: 0.93rem;
+  font-weight: 700;
+  line-height: 1.42;
+  color: var(--brand-navy);
+}
+
+.hero-case-chip__fit {
+  margin: 0.35rem 0 0;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(19, 34, 53, 0.68);
+}
+
+.positioning-section,
+.cases-section,
+.capability-section {
+  position: relative;
+  background: transparent;
+}
+
+.positioning-section::before,
+.cases-section::before,
+.capability-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.positioning-section::before {
+  background: radial-gradient(circle at 50% 0%, rgba(163, 138, 99, 0.05), transparent 45%);
+}
+
+.cases-section::before {
+  background: radial-gradient(circle at 50% 100%, rgba(54, 70, 90, 0.04), transparent 42%);
+}
+
+.capability-section::before {
+  background: radial-gradient(circle at 15% 20%, rgba(163, 138, 99, 0.04), transparent 30%);
+}
+
+.centered {
+  max-width: 860px;
+  margin: 0 auto 1.85rem;
+  text-align: center;
+}
+
+.section-title {
+  margin: 0;
+  font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+  line-height: 1.22;
+  color: var(--brand-navy);
+}
+
+.section-title--positioning {
+  max-width: 14ch;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title--cases {
+  max-width: 13ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-title--capability {
+  max-width: 12.5ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-subtitle {
+  margin: 0.9rem auto 0;
+  max-width: 46rem;
+  font-size: 0.9rem;
+  line-height: 1.82;
+  color: rgba(22, 34, 49, 0.72);
+}
+
+.tech-architecture-page--zh {
+  .section-title {
+    font-size: clamp(1.42rem, 2.2vw, 1.9rem);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+
+  .section-title--positioning,
+  .section-title--cases,
+  .section-title--capability {
+    max-width: none;
+  }
+
+  .section-subtitle {
+    max-width: 42rem;
+    font-size: 0.88rem;
+  }
+}
+
+.tech-architecture-page--en {
+  .page-title {
+    max-width: 9.6ch;
+    font-size: clamp(2rem, 3.1vw, 2.85rem);
+    line-height: 1.1;
+  }
+
+  .page-subtitle,
+  .hero-description,
+  .hero-note {
+    max-width: 33rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 2.2vw, 1.95rem);
+    line-height: 1.22;
+  }
+
+  .section-title--positioning,
+  .section-title--cases,
+  .section-title--capability {
+    max-width: none;
+  }
+
+  .section-title .title-line {
+    white-space: nowrap;
+  }
+
+  .section-subtitle {
+    max-width: 42rem;
+  }
+
+  .centered {
+    max-width: 980px;
+  }
+}
+
+.positioning-grid,
+.capability-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.positioning-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.capability-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.positioning-card,
+.capability-card {
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(243, 246, 249, 0.88));
+  border-color: rgba(33, 49, 66, 0.08);
+}
+
+.positioning-card {
+  padding: 1.2rem;
+}
+
+.positioning-card__index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  background: rgba(16, 28, 43, 0.06);
+  color: var(--brand-navy);
+  font-weight: 700;
+}
+
+.positioning-card__title,
+.capability-card__title {
+  margin: 0.8rem 0 0;
+  font-family: var(--body-font);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--brand-navy);
+}
+
+.positioning-card__description,
+.capability-card__description {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.78;
+  color: rgba(22, 34, 49, 0.72);
+}
+
+.capability-card :deep(.q-card__section) {
+  padding: 1.2rem;
+}
+
+.case-card {
+  padding: 1.7rem;
+  border-radius: 34px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(243, 246, 249, 0.95));
+  border-color: rgba(33, 49, 66, 0.08);
+}
+
+.case-card + .case-card {
+  margin-top: 1.4rem;
+}
+
+.case-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(33, 49, 66, 0.08);
+}
+
+.case-card__header-copy {
+  min-width: 0;
+}
+
+.case-card__kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(16, 28, 43, 0.06);
+  color: rgba(22, 34, 49, 0.7);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.case-card__title {
+  margin: 0.9rem 0 0;
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
+  line-height: 1.18;
+  color: var(--brand-navy);
+}
+
+.case-card__summary {
+  max-width: 48rem;
+  margin: 0.75rem 0 0;
+  color: rgba(22, 34, 49, 0.72);
+}
+
+.case-card__header-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(16, 28, 43, 0.06);
+  color: var(--brand-navy);
+  font-size: 1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.case-card__diagram-panel {
+  margin-top: 1.4rem;
+  padding: 1rem;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(12, 26, 39, 0.98), rgba(18, 34, 50, 0.94));
+}
+
+.diagram-stage {
+  padding-top: 1rem;
+}
+
+.diagram-canvas {
+  min-height: 360px;
+  padding: 1rem;
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(247, 241, 233, 0.98), rgba(230, 237, 243, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+}
+
+.case-card__details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+  gap: 1.4rem;
+  margin-top: 1.4rem;
+}
+
+.case-card__content-main,
+.case-card__content-side {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.case-block {
+  padding: 1rem 1.1rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(33, 49, 66, 0.06);
+}
+
+.case-block__title,
+.diagram-meta__title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: rgba(22, 34, 49, 0.78);
+}
+
+.case-block__text,
+.diagram-meta__caption {
+  margin: 0.65rem 0 0;
+  font-size: 0.98rem;
+  color: rgba(22, 34, 49, 0.72);
+}
+
+.case-lists-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.case-lists-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
+.case-list {
+  list-style: none;
+  margin: 0.7rem 0 0;
+  padding: 0;
+}
+
+.case-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  color: rgba(22, 34, 49, 0.76);
+}
+
+.case-list li + li {
+  margin-top: 0.75rem;
+}
+
+.stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.8rem;
+}
+
+.diagram-meta {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0 0.1rem;
+}
+
+.diagram-meta__title {
+  color: rgba(245, 239, 230, 0.62);
+}
+
+.diagram-meta__caption {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(245, 239, 230, 0.72);
+}
+
+.capability-card {
+  height: 100%;
+}
+
+.closing-section {
+  padding: 4rem 0 4.8rem;
+  color: white;
+  background:
+    radial-gradient(circle at bottom right, rgba(163, 138, 99, 0.14), transparent 25%),
+    linear-gradient(135deg, rgba(14, 20, 31, 0.98) 0%, rgba(20, 29, 41, 0.99) 100%);
+}
+
+.closing-shell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+
+.closing-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.18;
+  color: #f8f5ef;
+}
+
+.closing-description {
+  max-width: 38rem;
+  margin: 1rem 0 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.tech-architecture-page--dark {
+  background:
+    radial-gradient(circle at top left, rgba(176, 153, 115, 0.1), transparent 22%),
+    radial-gradient(circle at 84% 10%, rgba(104, 129, 155, 0.08), transparent 18%),
+    linear-gradient(180deg, #07111d 0%, #0b1624 48%, #08111c 100%);
+
+  .positioning-section,
+  .cases-section,
+  .capability-section {
+    background: transparent;
+  }
+
+  .section-title,
+  .positioning-card__title,
+  .capability-card__title,
+  .case-card__title {
+    color: #f5efe6;
+  }
+
+  .section-subtitle,
+  .positioning-card__description,
+  .capability-card__description,
+  .case-card__summary,
+  .case-block__text,
+  .diagram-meta__caption,
+  .case-list li {
+    color: rgba(243, 237, 228, 0.74);
+  }
+
+  .positioning-card,
+  .case-card,
+  .capability-card,
+  .case-block,
+  .diagram-canvas,
+  .hero-case-chip {
+    background: linear-gradient(180deg, rgba(10, 20, 31, 0.84), rgba(14, 24, 36, 0.94));
+    border-color: rgba(131, 171, 211, 0.12);
+    box-shadow: 0 22px 52px rgba(0, 0, 0, 0.24);
+  }
+
+  .hero-section {
+    color: #f3ede4;
+    background: linear-gradient(180deg, rgba(10, 20, 31, 0.98), rgba(8, 17, 28, 0.98));
+
+    &::before {
+      background-image:
+        linear-gradient(rgba(243, 237, 228, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(243, 237, 228, 0.05) 1px, transparent 1px);
     }
+  }
 
-    .devtools-section {
-      .devtools-card {
-        background: linear-gradient(135deg, #4a3829 0%, #5c4732 50%, #6b543f 100%);
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+  .page-subtitle,
+  .hero-description,
+  .hero-note,
+  .hero-proof-card__text,
+  .hero-domain-board__note,
+  .hero-case-chip__kicker,
+  .hero-case-chip__fit {
+    color: rgba(243, 237, 228, 0.72);
+  }
 
-        &:hover {
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
-          border-color: rgba(255, 255, 255, 0.18);
-        }
+  .hero-domain-board__title {
+    color: #f3ede4;
+  }
 
-        .devtools-title,
-        .devtools-description,
-        .devtools-button {
-          color: #e2e8f0;
-        }
+  .hero-badge,
+  .hero-domain-board__lead,
+  .hero-case-chip {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(131, 171, 211, 0.12);
+    color: #f3ede4;
+  }
 
-        .devtools-icon {
-          opacity: 0.9;
-        }
-      }
+  .hero-domain-board__list {
+    color: rgba(243, 237, 228, 0.72);
+  }
+
+  .hero-proof-card,
+  .hero-domain-board__lead,
+  .hero-case-chip {
+    background: linear-gradient(180deg, rgba(16, 28, 43, 0.82), rgba(18, 32, 47, 0.92));
+    border-color: rgba(131, 171, 211, 0.12);
+  }
+
+  .hero-proof-card__label {
+    color: rgba(201, 168, 96, 0.96);
+  }
+
+  .hero-signal__value,
+  .hero-signal__label,
+  .hero-case-chip__title,
+  .hero-case-chip__index {
+    color: #f3ede4;
+  }
+  .hero-case-chip__index {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .diagram-canvas {
+    background: linear-gradient(180deg, rgba(11, 23, 36, 0.82), rgba(16, 31, 47, 0.94));
+  }
+
+  .case-card__header {
+    border-color: rgba(131, 171, 211, 0.12);
+  }
+
+  .positioning-card__index,
+  .case-card__header-index,
+  .case-card__kicker {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(243, 237, 228, 0.78);
+  }
+
+  .case-block__title,
+  .diagram-meta__title {
+    color: rgba(243, 237, 228, 0.46);
+  }
+}
+
+@media (max-width: 1180px) {
+  .hero-stage,
+  .case-card__details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title,
+  .page-subtitle,
+  .hero-description,
+  .hero-note {
+    max-width: none;
+  }
+
+  .closing-shell {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .positioning-grid,
+  .capability-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 12px);
+  }
+
+  .section-shell,
+  .closing-section {
+    padding: 3.5rem 0;
+  }
+
+  .hero-section {
+    padding: 3.6rem 0 3rem;
+  }
+
+  .hero-stage {
+    gap: 1.2rem;
+  }
+
+  .positioning-grid,
+  .capability-grid,
+  .case-lists-grid,
+  .hero-proof-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-title {
+    max-width: 100%;
+    font-size: clamp(2.1rem, 10vw, 3.1rem);
+  }
+
+  .section-title,
+  .section-title--positioning,
+  .section-title--cases,
+  .section-title--capability {
+    max-width: 100%;
+  }
+
+  .tech-architecture-page--zh,
+  .tech-architecture-page--en {
+    .section-title {
+      font-size: clamp(1.45rem, 7vw, 2rem);
     }
+  }
 
-    .architecture-section {
-      background: linear-gradient(to bottom, #1a1410 0%, #2c2416 100%);
-
-      .architecture-card {
-        background: #2c2416;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4);
-        border: 1px solid rgba(201, 162, 109, 0.08);
-
-        &:hover {
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.5);
-        }
-
-        .architecture-title {
-          color: #ffffff;
-        }
-
-        .architecture-description {
-          color: #b0b0b0;
-        }
-
-        .mermaid-wrapper {
-          background: #e8e3dc;
-          border-color: #6b5d4f;
-        }
-
-        .tech-highlights {
-          .highlights-title {
-            color: #ffffff;
-          }
-
-          .highlights-list li {
-            color: #d0d0d0;
-          }
-        }
-      }
+  .tech-architecture-page--en {
+    .section-title .title-line {
+      white-space: normal;
     }
+  }
+
+  .hero-blueprint,
+  .diagram-canvas {
+    min-height: auto;
+    padding: 0.6rem;
+  }
+
+  .hero-actions,
+  .closing-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .hero-actions :deep(.q-btn),
+  .closing-actions :deep(.q-btn) {
+    width: 100%;
+  }
+
+  .case-card {
+    padding: 1.05rem;
+    border-radius: 24px;
+  }
+
+  .case-card__header {
+    flex-direction: column;
+  }
+
+  .case-card__diagram-panel {
+    padding: 0.8rem;
+    border-radius: 22px;
+  }
+
+  .case-block {
+    padding: 0.9rem;
+    border-radius: 18px;
+  }
+
+  .hero-domain-board__lead,
+  .hero-case-chip,
+  .positioning-card,
+  .capability-card {
+    border-radius: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: calc(100% - 8px);
+  }
+
+  .hero-section,
+  .section-shell,
+  .closing-section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .hero-badge-row {
+    gap: 0.45rem;
+  }
+
+  .hero-badge,
+  .case-card__kicker {
+    min-height: 28px;
+    padding: 0.22rem 0.68rem;
+    font-size: 0.72rem;
+  }
+
+  .page-title {
+    font-size: clamp(1.8rem, 9.4vw, 2.4rem);
+  }
+
+  .page-subtitle,
+  .hero-description,
+  .hero-note,
+  .section-subtitle,
+  .case-block__text,
+  .case-card__summary {
+    font-size: 0.92rem;
+    line-height: 1.72;
+  }
+
+  .case-card {
+    padding: 0.92rem;
+    border-radius: 20px;
+  }
+
+  .case-card__diagram-panel {
+    padding: 0.7rem;
+    border-radius: 18px;
+  }
+
+  .diagram-canvas {
+    padding: 0.45rem;
+    border-radius: 16px;
+  }
+
+  .case-card__header-index {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
   }
 }
 </style>

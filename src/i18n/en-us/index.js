@@ -1,7 +1,7 @@
 import home from './home'
 import services from './services'
 import techarch from './techarch'
-import portfolio from './portfolio'
+import aiWorkflow from './ai-workflow'
 
 export default {
   failed: 'Action failed',
@@ -17,19 +17,29 @@ export default {
   myname: 'Poyu Chen 陳柏妤',
   footer: 'Copyright © 2026 Poyu Chen. All rights reserved.',
 
+  header: {
+    brand_name_primary: 'Poyu Chen',
+    brand_name_secondary: '陳柏妤',
+    brand_role: 'Systems Architecture ・ Full-Stack',
+    theme: 'Toggle color mode',
+    light: 'Light',
+    dark: 'Dark',
+    language: 'Switch language',
+  },
+
   menu: {
     home: 'Home',
     profile: 'About',
     work: 'Services',
-    techarch: 'Technical Experience',
-    portfolio: 'Portfolio',
+    techarch: 'Architecture Cases',
+    aiWorkflow: 'AI Workflow',
     blog: 'Blog',
   },
 
   dark_mode: 'Dark Mode',
 
   ...home,
-  ...portfolio,
+  ...aiWorkflow,
 
   lang: {
     title: 'lang',
@@ -297,13 +307,58 @@ export default {
   },
 
   profile: {
-    label: 'Core Strengths: 13 Years Full-Stack Experience & 40+ Team Management',
-    description: 'Graduated from National Chung Hsing University with a degree in Management Information Systems, bringing over 13 years of in-depth experience in software development and technical management. Started career as a Java engineer and progressed to Director of Software Projects, possessing complete perspective from frontline coding to high-level technical decision-making.\n\nProficient in Java (Spring) and .NET Core dual ecosystems, skilled in Vue.js/React, PostgreSQL, and cloud architecture (AWS/Azure). Have designed and maintained high-concurrency, high-traffic systems (IoT, vehicle networking) multiple times, ensuring system stability in complex scenarios.\n\nIn leading teams of 32 to 40 members, focus not only on progress management but also on "evaluating optimal solutions". Can quickly dive into unfamiliar projects, grasp core issues, provide professional judgment to resolve technical obstacles, and ensure precise resource allocation.',
+    label: '13 years across full-stack engineering, system architecture, and technical leadership',
+    cover_eyebrow: 'About',
+    cover_summary: 'Complex systems, cross-functional requirements, and delivery pressure are translated into technical structures teams can keep building on.',
+    intro_eyebrow: 'From hands-on engineer to technical manager',
+    description: 'The career path began in software engineering, and the core of the work has stayed consistent ever since: structure the problem well, design the system clearly, and carry the work through to delivery. From Java backend development and database design to frontend, cloud, and integration architecture, the result has been a practical end-to-end view of how systems move from requirement to production.\n\nMuch of the work has been in high-complexity domains including vehicle networking, IoT, membership integration, e-commerce, and government systems. In those environments, the priority goes beyond shipping features. What matters is whether the system stays stable, whether the team can keep delivering, and whether technical decisions continue to support the next stage of growth.\n\nLater management roles involved leading teams of 32 to 40 people across architecture direction, technical decision-making, team development, and delivery alignment. Good technical leadership is not about stepping away from the field. It is about staying close enough to simplify the situation, correct the direction, and place effort where it creates the most value.',
     develop: 'Technical Development',
     leader: 'Team Leadership',
     teach: 'Knowledge Sharing',
-    label2: "I'm convinced that about half of what separates successful entrepreneurs from non-successful ones is pure perseverance.",
-    label2_from: '-- Steve Jobs',
+    quote: 'The goal is not only to build the system, but to reduce complexity until a team can keep delivering with clarity and confidence.',
+    quote_from: '-- Poyu Chen',
+    sections: {
+      stats: {
+        title: 'The Scale Built Over Time',
+        subtitle: 'These numbers are not decoration. They reflect the kind of work shaped over time in real delivery environments.'
+      },
+      values: {
+        title: 'How The Work Is Approached',
+        subtitle: 'The focus is less on technical display and more on whether the problem is framed well, the structure is sound, the quality holds, and the team keeps growing.'
+      },
+      projects: {
+        title: 'Representative Projects',
+        subtitle: 'These projects are not a list of technologies. They show how concurrency, integration complexity, and long-term operations have been handled in practice.'
+      },
+      skills: {
+        title: 'Technical Range',
+        subtitle: 'Breadth matters not as a keyword list, but as the ability to choose the right combination of tools for the problem at hand.'
+      },
+      experience: {
+        title: 'Career Path',
+        subtitle: 'The role has changed from engineer to senior developer to technical manager, but the throughline has stayed the same: make systems and teams more stable together.'
+      }
+    },
+    project_highlights_label: 'Project Highlights',
+    experience_achievements_label: 'Key Outcomes',
+    pillars: {
+      architecture: {
+        title: 'Define the real problem first',
+        description: 'Clarifying what the work is actually solving, where the boundaries are, and where the real risk lives before implementation helps teams avoid wasting energy inside ambiguity.'
+      },
+      problem_solving: {
+        title: 'Build structure, not just features',
+        description: 'Architecture, data flow, responsibility boundaries, and operational cost need to be considered together. Stability and evolvability should be designed in from the start.'
+      },
+      team_leadership: {
+        title: 'Make delivery depend on method, not heroics',
+        description: 'Standards, decision rhythm, and collaboration patterns matter because sustainable delivery should not depend on a few people overextending themselves.'
+      },
+      continuous_learning: {
+        title: 'Keep updating the perspective and the toolkit',
+        description: 'New tools and approaches are worth learning, but the point is not trend-chasing. The point is judging what genuinely improves the product, the workflow, and the team.'
+      }
+    },
     timeline: {
       title1: 'My first programming language - Java',
       message1: 'Studying in the Department of Management Information System started the road of programming. In the beginning courses, I wrote many small programs with enthusiasmthey and also developed the membership system, shopping cart, booking system by JSP Servlet. It makes an opportunity to enter the information industry in the future.',

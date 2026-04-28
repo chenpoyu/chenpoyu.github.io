@@ -7,12 +7,12 @@ export const useParamsStore = defineStore('params', {
       {
         title: '中文',
         short: 'zh-tw',
-        icon: 'img:icons/flag_zh-tw.svg'
+        icon: 'img:/icons/flag_zh-tw.svg'
       },
       {
         title: 'English',
         short: 'en-us',
-        icon: 'img:icons/flag_en-us.svg'
+        icon: 'img:/icons/flag_en-us.svg'
       }
     ],
     menus: [
@@ -45,10 +45,10 @@ export const useParamsStore = defineStore('params', {
         open: '_self'
       },
       {
-        title: 'menu.portfolio',
+        title: 'menu.aiWorkflow',
         caption: '',
         icon: 'collections',
-        to: '/portfolio',
+        to: '/ai-workflow',
         open: '_self'
       },
       {
