@@ -256,7 +256,7 @@ export default {
     subtitle: '13 years of technical career, from engineer to technical manager',
     timeline: [
       {
-        year: 'Aug 2022 - Present',
+        year: 'Aug 2022 - Mar 2026',
         title: 'Technical Manager (Director of Software Project Division)',
         company: 'Weyi Technology Co., Ltd.',
         description: 'Serve as Director of Software Project Division, managing 4 departments (Accounting, IoT, Membership, HR/Payroll) with up to 32 team members',
@@ -268,7 +268,7 @@ export default {
         ]
       },
       {
-        year: '2019 - Nov 2025',
+        year: '2019 - Dec 2025',
         title: 'Technical Manager (Director of Project Department)',
         company: 'Yesee Enterprise Co., Ltd.',
         description: 'Led technical department managing project development teams with up to 40 members',
@@ -292,7 +292,7 @@ export default {
         ]
       },
       {
-        year: 'Apr 2013 - Apr 2016',
+        year: 'Apr 2013 - Mar 2016',
         title: 'Technical Consultant (Java Engineer)',
         company: 'Hongyang Technology Co., Ltd.',
         description: 'Staff augmentation dispatched to Acer for system development and maintenance',
